@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "My First Post!"
+title:  "My First Post"
 date:   2015-07-16 02:31:56
 categories: general
 ---
