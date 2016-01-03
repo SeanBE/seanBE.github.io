@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}">
+
+<head>
+  {{ partial "head.html" . }}
+</head>
+
+<body>
+  <div class="container">
+    {{ partial "header.html" . }}
+    <div class="content">
+      <div class="posts">
+        {{ $paginator := .Paginate (where .Data.Pages "Type" "post") }} {{ range $paginator.Pages }}
+        <div class="post">
+          <h2 class="post-title"><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
+          {{ if .Params.tags }}
+          <span class="post-tags">
+            {{ range .Params.tags }} #
+            <a href="/tags/{{ . | urlize }}">{{ . }}</a>&nbsp; {{ end }}
+          </span>
+          {{ end }} {{ if .Site.Params.Summary }}
+          <div class="summary">
+            {{ .Summary }}
+            <a class="read-more" href="{{.RelPermalink}}">&hellip;</a>
+          </div>
+          {{ else if .Site.Params.Content }}
+          <div class="content">
+            {{ .Content }}
+          </div>
+          {{ end }}
+          <span class="post-date">Posted on {{ .Date.Format "Jan 2, 2006" }}</span>
+        </div>
+        {{ end }}
+      </div>
+      {{ partial "pagination.html" . }}
+    </div>
+    {{ partial "footer.html" . }}
+  </div>
+  <script src="{{ .Site.BaseURL }}/js/slim.js"></script>
+  <script src="{{ .Site.BaseURL }}/js/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+  </script>
+  {{ with .Site.Params.AnalyticsID }}{{ partial "analytics.html" . }}{{ end }}
+
+</body>
+
+</html>
