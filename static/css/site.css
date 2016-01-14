@@ -5,3 +5,7 @@ a {
   margin-top: -5px;
   text-align: right;
 }
+
+.post-title:after {
+  width: 10%;
+}
