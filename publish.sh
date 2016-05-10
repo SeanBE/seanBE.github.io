@@ -15,10 +15,11 @@ if [ $# -eq 1 ]
 fi
 
 git commit -m "$msg"
-
+git push origin source
 # Move to build dir.
 cd public
 
 # Add and commit build changes.
 git add -A
 git commit -m "$msg"
+git push origin master
