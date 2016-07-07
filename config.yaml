@@ -6,7 +6,7 @@ permalinks:
   post: /:slug/
 
 params:
-  Subtitle: "Belgian • Software Engineer"
+  Subtitle: "Software engineer/Data Scientist in the making."
   GithubID: "seanBE"
   TwitterID: "seanBE"
   AnalyticsID: "UA-65235616-1"

@@ -1,11 +1,18 @@
 a {
-  color: #000000;
+    color: #000000;
 }
 .post-date {
-  margin-top: -5px;
-  text-align: right;
+    margin-top: -5px;
+    text-align: right;
+}
+.post-title:after {
+    width: 10%;
 }
 
-.post-title:after {
-  width: 10%;
+.header a {
+    float: right;
+    width: 40px;
+}
+.header h1 {
+    float: left;
 }
