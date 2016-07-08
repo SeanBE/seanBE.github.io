@@ -1,14 +1,14 @@
 baseurl: "http://seanBE.github.io"
 languageCode: "en-us"
-title: "Sean Löfgren"
-theme: slim
-permalinks:
-  post: /:slug/
+title: "The Blog of Sean Löfgren"
 
 params:
-  Subtitle: "Software engineer/Data Scientist in the making."
-  GithubID: "seanBE"
-  TwitterID: "seanBE"
-  AnalyticsID: "UA-65235616-1"
-  LinkedInID: "seanlofgren"
-  Content: true
+    name: "Sean Löfgren"
+    bio: "Software engineer - Data Scientist"
+    googleAnalytics: "UA-65235616-1"
+    disqusShortname: "spf13"
+
+social:
+    twitter: "https://www.twitter.com/seanBE"
+    github: "https://github.com/SeanBE"
+    linkedin-square: "https://www.linkedin.com/in/seanlofgren"

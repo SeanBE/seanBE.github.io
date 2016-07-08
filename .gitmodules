@@ -1,6 +1,0 @@
-[submodule "themes/slim"]
-	path = themes/slim
-	url = https://github.com/zhe/hugo-theme-slim.git
-[submodule "themes/cactus"]
-	path = themes/cactus
-	url = git@github.com:digitalcraftsman/hugo-cactus-theme.git
