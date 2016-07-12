@@ -19,7 +19,7 @@
 
 &lt;p&gt;There are many tutorials on how to leverage Amazon&amp;rsquo;s supreme computing power to perform deep learning tasks. I would like to take this opportunity to contribute to that collection.&lt;/p&gt;
 
-&lt;p&gt;I started working with Amazon&amp;rsquo;s EC2 instances for deep learning by reading some of these said tutorials including predominantly:&lt;/p&gt;
+&lt;p&gt;I started working with Amazon&amp;rsquo;s EC2 instances for deep learning by reading some of these tutorials, including predominantly:&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://vasir.net/blog/opencl/installing-cuda-opencl-pyopencl-on-aws-ec2&#34;&gt;Installing CUDA, OpenCL, and PyOpenCL on AWS EC2&lt;/a&gt;&lt;/li&gt;
@@ -27,14 +27,14 @@
 &lt;li&gt;&lt;a href=&#34;https://gist.github.com/erikbern/78ba519b97b440e10640&#34;&gt;Installing TensorFlow on AWS&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;I would launch an instance, install the necessary dependencies, and create an AMI. This would be repeated for each deep learning framework that I wanted to use (Theano, Caffe, Tensorflow etc.)&lt;/p&gt;
+&lt;p&gt;I would launch an instance, install the necessary dependencies and create an AMI. This would be repeated for each deep learning framework that I wanted to use (Theano, Caffe, Tensorflow etc.)&lt;/p&gt;
 
-&lt;p&gt;I recently came upon &lt;a href=&#34;https://github.com/NVIDIA/nvidia-docker&#34;&gt;NVIDIA Docker&lt;/a&gt; and I haven&amp;rsquo;t stopped using it since. I&amp;rsquo;m only storing one AMI now and it&amp;rsquo;s much faster for me to update the frameworks and their underlying dependencies.
+&lt;p&gt;I recently came upon &lt;a href=&#34;https://github.com/NVIDIA/nvidia-docker&#34;&gt;NVIDIA Docker&lt;/a&gt; and I haven&amp;rsquo;t stopped using it since. I&amp;rsquo;m only storing one AMI now and updating dependencies has become hassle-free.
 NVIDIA Docker is a thin wrapper for &lt;a href=&#34;https://www.docker.com/what-docker&#34;&gt;Docker&lt;/a&gt; that can, in addition to the default functionality, discover available GPU devices and their respective driver files.&lt;/p&gt;
 
 &lt;p&gt;Throughout this tutorial, I&amp;rsquo;m going to assume you&amp;rsquo;ve selected one of the GPU EC2 instances, running Ubuntu 14.04.4 LTS (Trusty Tahr). Issues might arise if you don&amp;rsquo;t follow.&lt;/p&gt;
 
-&lt;p&gt;Following this tutorial, it took roughly 15 minutes, from launching the instance to having a container ready with Keras, Theano, and CUDA.&lt;/p&gt;
+&lt;p&gt;It will take roughly 15 minutes to complete this tutorial, from launching the instance to having a container ready with Keras, Theano, and CUDA.&lt;/p&gt;
 
 &lt;h2 id=&#34;creating-the-ec2-instance:d0d3ef63b0c21019e7d059025c3f469f&#34;&gt;&lt;strong&gt;Creating the EC2 Instance&lt;/strong&gt;&lt;/h2&gt;
 
@@ -57,7 +57,7 @@ NVIDIA Docker is a thin wrapper for &lt;a href=&#34;https://www.docker.com/what-
 
 &lt;li&gt;&lt;p&gt;Select one of the GPU instances: g2.2xlarge (1 GPU), g2.8xlarge (4 GPUs).&lt;/p&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;Choose &amp;lsquo;Request Spot Instances&amp;rsquo; if you want to save up to 90% on instance costs. Spot instances provide computer power at a much cheaper rate but they come with the risk of getting killed unexpectedly (depends on your max bid price). If you can&amp;rsquo;t handle the interruptions and are willing to pay more, stick to the default on-demand instance.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Choose &amp;lsquo;Request Spot Instances&amp;rsquo; if you want to save up to 90% on instance costs. Spot instances provide computer power at a much cheaper rate but come with the risk of getting killed unexpectedly (depends on your max bid price). If you can&amp;rsquo;t handle the interruptions and are willing to pay more, stick to the default on-demand instance.&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;h2 id=&#34;installing-the-prerequisites:d0d3ef63b0c21019e7d059025c3f469f&#34;&gt;&lt;strong&gt;Installing the prerequisites&lt;/strong&gt;&lt;/h2&gt;
@@ -81,7 +81,7 @@ NVIDIA Docker is a thin wrapper for &lt;a href=&#34;https://www.docker.com/what-
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Install Docker on the instance. You need to follow &lt;a href=&#34;https://docs.docker.com/engine/installation/linux/ubuntulinux/&#34;&gt;this&lt;/a&gt;.
-The tutorial goes through updating your apt sources, installing the &lt;code&gt;linux-image-extra&lt;/code&gt; kernel package and &lt;code&gt;docker-engine&lt;/code&gt;.&lt;/p&gt;
+The tutorial consists of updating your apt sources, installing the &lt;code&gt;linux-image-extra&lt;/code&gt; kernel package and &lt;code&gt;docker-engine&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;To summarize,&lt;/p&gt;
 
@@ -175,7 +175,7 @@ Read &lt;a href=&#34;http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating
 &lt;pre&gt;&lt;code&gt;sudo apt-get install s3cmd
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;One way of moving files onto the container is using docker&amp;rsquo;s &lt;code&gt;scp&lt;/code&gt; command. Unfortunately, with a lot of data and code, this can be quiet a hassle.&lt;/p&gt;
+&lt;p&gt;One way of moving files onto the container is using docker&amp;rsquo;s &lt;code&gt;scp&lt;/code&gt; command. Unfortunately, with a lot of data and code, this can be quite a hassle.&lt;/p&gt;
 
 &lt;p&gt;I recommend attaching a data volume to a container. Next time you run a container, use the &lt;code&gt;-v&lt;/code&gt; flag.&lt;/p&gt;
 

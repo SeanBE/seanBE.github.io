@@ -44,7 +44,7 @@
 
 <p>There are many tutorials on how to leverage Amazon&rsquo;s supreme computing power to perform deep learning tasks. I would like to take this opportunity to contribute to that collection.</p>
 
-<p>I started working with Amazon&rsquo;s EC2 instances for deep learning by reading some of these said tutorials including predominantly:</p>
+<p>I started working with Amazon&rsquo;s EC2 instances for deep learning by reading some of these tutorials, including predominantly:</p>
 
 <ul>
 <li><a href="http://vasir.net/blog/opencl/installing-cuda-opencl-pyopencl-on-aws-ec2">Installing CUDA, OpenCL, and PyOpenCL on AWS EC2</a></li>
@@ -52,14 +52,14 @@
 <li><a href="https://gist.github.com/erikbern/78ba519b97b440e10640">Installing TensorFlow on AWS</a></li>
 </ul>
 
-<p>I would launch an instance, install the necessary dependencies, and create an AMI. This would be repeated for each deep learning framework that I wanted to use (Theano, Caffe, Tensorflow etc.)</p>
+<p>I would launch an instance, install the necessary dependencies and create an AMI. This would be repeated for each deep learning framework that I wanted to use (Theano, Caffe, Tensorflow etc.)</p>
 
-<p>I recently came upon <a href="https://github.com/NVIDIA/nvidia-docker">NVIDIA Docker</a> and I haven&rsquo;t stopped using it since. I&rsquo;m only storing one AMI now and it&rsquo;s much faster for me to update the frameworks and their underlying dependencies.
+<p>I recently came upon <a href="https://github.com/NVIDIA/nvidia-docker">NVIDIA Docker</a> and I haven&rsquo;t stopped using it since. I&rsquo;m only storing one AMI now and updating dependencies has become hassle-free.
 NVIDIA Docker is a thin wrapper for <a href="https://www.docker.com/what-docker">Docker</a> that can, in addition to the default functionality, discover available GPU devices and their respective driver files.</p>
 
 <p>Throughout this tutorial, I&rsquo;m going to assume you&rsquo;ve selected one of the GPU EC2 instances, running Ubuntu 14.04.4 LTS (Trusty Tahr). Issues might arise if you don&rsquo;t follow.</p>
 
-<p>Following this tutorial, it took roughly 15 minutes, from launching the instance to having a container ready with Keras, Theano, and CUDA.</p>
+<p>It will take roughly 15 minutes to complete this tutorial, from launching the instance to having a container ready with Keras, Theano, and CUDA.</p>
 
 <h2 id="creating-the-ec2-instance:d0d3ef63b0c21019e7d059025c3f469f"><strong>Creating the EC2 Instance</strong></h2>
 
@@ -82,7 +82,7 @@ NVIDIA Docker is a thin wrapper for <a href="https://www.docker.com/what-docker"
 
 <li><p>Select one of the GPU instances: g2.2xlarge (1 GPU), g2.8xlarge (4 GPUs).</p></li>
 
-<li><p>Choose &lsquo;Request Spot Instances&rsquo; if you want to save up to 90% on instance costs. Spot instances provide computer power at a much cheaper rate but they come with the risk of getting killed unexpectedly (depends on your max bid price). If you can&rsquo;t handle the interruptions and are willing to pay more, stick to the default on-demand instance.</p></li>
+<li><p>Choose &lsquo;Request Spot Instances&rsquo; if you want to save up to 90% on instance costs. Spot instances provide computer power at a much cheaper rate but come with the risk of getting killed unexpectedly (depends on your max bid price). If you can&rsquo;t handle the interruptions and are willing to pay more, stick to the default on-demand instance.</p></li>
 </ol>
 
 <h2 id="installing-the-prerequisites:d0d3ef63b0c21019e7d059025c3f469f"><strong>Installing the prerequisites</strong></h2>
@@ -106,7 +106,7 @@ NVIDIA Docker is a thin wrapper for <a href="https://www.docker.com/what-docker"
 </code></pre>
 
 <p>Install Docker on the instance. You need to follow <a href="https://docs.docker.com/engine/installation/linux/ubuntulinux/">this</a>.
-The tutorial goes through updating your apt sources, installing the <code>linux-image-extra</code> kernel package and <code>docker-engine</code>.</p>
+The tutorial consists of updating your apt sources, installing the <code>linux-image-extra</code> kernel package and <code>docker-engine</code>.</p>
 
 <p>To summarize,</p>
 
@@ -200,7 +200,7 @@ Read <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami
 <pre><code>sudo apt-get install s3cmd
 </code></pre>
 
-<p>One way of moving files onto the container is using docker&rsquo;s <code>scp</code> command. Unfortunately, with a lot of data and code, this can be quiet a hassle.</p>
+<p>One way of moving files onto the container is using docker&rsquo;s <code>scp</code> command. Unfortunately, with a lot of data and code, this can be quite a hassle.</p>
 
 <p>I recommend attaching a data volume to a container. Next time you run a container, use the <code>-v</code> flag.</p>
 
