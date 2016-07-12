@@ -1,14 +1,7 @@
 +++
 date = "2016-07-08"
 title = "Deep Learning with AWS"
-reading_time = "3 "
-keywords = ["nvidia", "docker", "aws", "ec2", "machine learning", "deep learning"]
 +++
-
-<!--
-#TODO Check reading_time and keywords.
-#TODO fix numbering of steps!!
--->
 
 There are many tutorials on how to leverage Amazon's supreme computing power to perform deep learning tasks. I would like to take this opportunity to contribute to that collection.
 
@@ -18,14 +11,14 @@ I started working with Amazon's EC2 instances for deep learning by reading some 
 * [Deep Learning Tutorial for Kaggle's Facial Keypoints Detection](https://www.kaggle.com/c/facial-keypoints-detection/details/deep-learning-tutorial)
 * [Installing TensorFlow on AWS](https://gist.github.com/erikbern/78ba519b97b440e10640)
 
-I would launch an instance, install the necessary dependencies, and create an AMI. I had an AMI for each deep learning framework that I wanted to use (Theano, Caffe, Tensorflow etc.)
+I would launch an instance, install the necessary dependencies, and create an AMI. This would be repeated for each deep learning framework that I wanted to use (Theano, Caffe, Tensorflow etc.)
 
-I recently came upon [NVIDIA Docker](https://github.com/NVIDIA/nvidia-docker) and I haven't stopped using it since. I've only got one AMI and it's much faster to update the frameworks and their underlying dependencies.
-NVIDIA Docker is a thin wrapper for [Docker](https://www.docker.com/what-docker) with the added benefit that it can discover any available GPU devices and their respective driver files.
+I recently came upon [NVIDIA Docker](https://github.com/NVIDIA/nvidia-docker) and I haven't stopped using it since. I'm only storing one AMI now and it's much faster for me to update the frameworks and their underlying dependencies.
+NVIDIA Docker is a thin wrapper for [Docker](https://www.docker.com/what-docker) that can, in addition to the default functionality, discover available GPU devices and their respective driver files.
 
 Throughout this tutorial, I'm going to assume you've selected one of the GPU EC2 instances, running Ubuntu 14.04.4 LTS (Trusty Tahr). Issues might arise if you don't follow.
 
-It took roughly 15 minutes, following this tutorial, from launching the instance to having a container ready with Keras, Theano, and CUDA.
+Following this tutorial, it took roughly 15 minutes, from launching the instance to having a container ready with Keras, Theano, and CUDA.
 
 ## **Creating the EC2 Instance**
 
@@ -54,12 +47,12 @@ Once you've made your way into the instance, it's time to start installing every
 
 In order to use NVIDIA Docker, we need to fulfill [Nvidia-docker prerequisites](https://github.com/NVIDIA/nvidia-docker/wiki/Installation#prerequisites).
 
-1. Update all the default packages on the instance.
+Update all the default packages on the instance.
 ```
 sudo apt-get update && sudo apt-get upgrade
 ```
 
-2. Install Docker on the instance. You need to follow [this](https://docs.docker.com/engine/installation/linux/ubuntulinux/).
+Install Docker on the instance. You need to follow [this](https://docs.docker.com/engine/installation/linux/ubuntulinux/).
 The tutorial goes through updating your apt sources, installing the ```linux-image-extra``` kernel package and ```docker-engine```.
 
 To summarize,
@@ -84,7 +77,7 @@ If you've followed all of those instructions, you can test it out using the foll
 sudo docker run hello-world
 ```
 
-3. Install the necessary graphics drivers. Read more [here](http://www.howtogeek.com/242045/how-to-get-the-latest-nvidia-amd-or-intel-graphics-drivers-on-ubuntu/).
+Install the necessary graphics drivers. Read more [here](http://www.howtogeek.com/242045/how-to-get-the-latest-nvidia-amd-or-intel-graphics-drivers-on-ubuntu/).
 According to the PPA page, ```nvidia-361``` is the recommended version.
 ```
 sudo add-apt-repository ppa:graphics-drivers/ppa
@@ -92,13 +85,15 @@ sudo apt-get update
 sudo apt-get install nvidia-361
 ```
 
-4. Install ```nvidia-modprobe```. It loads the NVIDIA kernel module and creates NVIDIA character device files.
+Install ```nvidia-modprobe```. It loads the NVIDIA kernel module and creates NVIDIA character device files.
 ```
 sudo apt-get install nvidia-modprobe
 ```
 
 ## **Installing NVIDIA Docker**
-If you've followed the instructions above, the next few should be a breeze. 1. Install NVIDIA Docker.
+If you've followed the instructions above, the next few should be a breeze. 
+
+Install NVIDIA Docker.
 ```
 wget -P /tmp https://github.com/NVIDIA/nvidia-docker/releases/download/v1.0.0-rc.3/nvidia-docker_1.0.0.rc.3-1_amd64.deb
 
@@ -125,15 +120,15 @@ sudo nvidia-docker run --rm nvidia/cuda nvidia-smi
 |  No running processes found                                                 |
 +-----------------------------------------------------------------------------+
 ```
-2. I highly recommend creating an AMI at point in time. You will avoid having to follow this tutorial again.
+I highly recommend creating an AMI at this point in time. You will avoid having to follow this tutorial again.
 Read [Creating an AMI EBS](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami-ebs.html).
 
-3. Select a Docker image from [Kaixhin's repository](https://hub.docker.com/u/kaixhin/). Let's pick `kaixhin/cuda-keras` and download it.
+Select a Docker image from [Kaixhin's repository](https://hub.docker.com/u/kaixhin/). Let's pick `kaixhin/cuda-keras` and download it.
 ```
 sudo nvidia-docker pull kaixhin/cuda-keras
 ```
 
-4. Create a container with the image.
+Create a container with the image.
 ```
 sudo nvidia-docker run -it kaixhin/cuda-keras
 ```
@@ -141,7 +136,7 @@ sudo nvidia-docker run -it kaixhin/cuda-keras
 Voila! You've got yourself a container setup with Keras, Theano and CUDA.
 
 ## **Extras**
-##### Adding code and data
+#### Adding code and data
 You've got a container now but no code or data. What is the point?!?!
 
 In the EC2 instance, create a directory where your code and data will reside. You can use ```s3cmd``` to move data from/to Amazon's S3.
@@ -159,9 +154,9 @@ sudo nvidia-docker -v /home/ubuntu/[HOST_DIR]:/[CONTAINER_DIR] -it kaixhin/cuda-
 ```
 cd to `/[CONTAINER_DIR]` and you will find everything that is in the `[HOST_DIR]`. Any changes in `[HOST_DIR]` will be directly reflected in the container (without having to run again).
 
-##### Additional dependencies
+#### Additional dependencies
 
-I want to add some additional dependencies to my container. Go to [Kaixhin's repository](https://hub.docker.com/u/kaixhin/) and download the Dockerfile related to the image you're interested in building.
+Go to [Kaixhin's repository](https://hub.docker.com/u/kaixhin/) and download the Dockerfile related to the image you're interested in building.
 
 Modify the Dockerfile and copy it over to your EC2 instance. I recommend reading [Best practices for writing Dockerfiles](https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/).
 
@@ -173,15 +168,7 @@ Run the following:
 sudo nvidia-docker build [DOCKER_DIR]
 ```
 
-Next time you run a container, you can use the image id of the image you just built.
+Next time you run a container, you can use the id of the image you just built.
 
-##### Conclusion
-I hope you enjoyed my tutorial. Feel free to comment and critique where possible.
-
-When I want to train my model, I usually:
-
-1. Modify a Dockerfile to satisfy my learning task requirements.
-2. Build the Docker image and run a container of it with my data/code volume attached.
-3. Run some code (e.g. `nohup python -u train_me.py > train.logs &`)
-4. Detach from my container (Ctrl+P+Q) (Attach with `sudo nvidia-docker attach [name]`)
-5. Tail the logs from the host instance.
+### Conclusion
+I hope you enjoyed my tutorial. Once I've got everything set up, I'll usually run some code, detach from my container and tail the logs from the host.
