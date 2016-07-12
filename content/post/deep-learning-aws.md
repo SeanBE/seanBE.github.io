@@ -1,7 +1,15 @@
-+++
-date = "2016-07-08"
-title = "Deep Learning with AWS"
-+++
+---
+date: "2016-07-08"
+title: "Deep Learning with AWS"
+keywords:
+  - "AWS"
+  - "EC2"
+  - "deep learning"
+  - "machine learning"
+  - "gpu"
+  - "NVIDIA"
+  - "docker"
+---
 
 There are many tutorials on how to leverage Amazon's supreme computing power to perform deep learning tasks. I would like to take this opportunity to contribute to that collection.
 
