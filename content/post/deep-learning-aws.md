@@ -5,20 +5,20 @@ title = "Deep Learning with AWS"
 
 There are many tutorials on how to leverage Amazon's supreme computing power to perform deep learning tasks. I would like to take this opportunity to contribute to that collection.
 
-I started working with Amazon's EC2 instances for deep learning by reading some of these said tutorials including predominantly:
+I started working with Amazon's EC2 instances for deep learning by reading some of these tutorials, including predominantly:
 
 * [Installing CUDA, OpenCL, and PyOpenCL on AWS EC2](http://vasir.net/blog/opencl/installing-cuda-opencl-pyopencl-on-aws-ec2)
 * [Deep Learning Tutorial for Kaggle's Facial Keypoints Detection](https://www.kaggle.com/c/facial-keypoints-detection/details/deep-learning-tutorial)
 * [Installing TensorFlow on AWS](https://gist.github.com/erikbern/78ba519b97b440e10640)
 
-I would launch an instance, install the necessary dependencies, and create an AMI. This would be repeated for each deep learning framework that I wanted to use (Theano, Caffe, Tensorflow etc.)
+I would launch an instance, install the necessary dependencies and create an AMI. This would be repeated for each deep learning framework that I wanted to use (Theano, Caffe, Tensorflow etc.)
 
-I recently came upon [NVIDIA Docker](https://github.com/NVIDIA/nvidia-docker) and I haven't stopped using it since. I'm only storing one AMI now and it's much faster for me to update the frameworks and their underlying dependencies.
+I recently came upon [NVIDIA Docker](https://github.com/NVIDIA/nvidia-docker) and I haven't stopped using it since. I'm only storing one AMI now and updating dependencies has become hassle-free.
 NVIDIA Docker is a thin wrapper for [Docker](https://www.docker.com/what-docker) that can, in addition to the default functionality, discover available GPU devices and their respective driver files.
 
 Throughout this tutorial, I'm going to assume you've selected one of the GPU EC2 instances, running Ubuntu 14.04.4 LTS (Trusty Tahr). Issues might arise if you don't follow.
 
-Following this tutorial, it took roughly 15 minutes, from launching the instance to having a container ready with Keras, Theano, and CUDA.
+It will take roughly 15 minutes to complete this tutorial, from launching the instance to having a container ready with Keras, Theano, and CUDA.
 
 ## **Creating the EC2 Instance**
 
@@ -33,7 +33,7 @@ To summarize,
 
 3. Select one of the GPU instances: g2.2xlarge (1 GPU), g2.8xlarge (4 GPUs).
 
-4. Choose 'Request Spot Instances' if you want to save up to 90% on instance costs. Spot instances provide computer power at a much cheaper rate but they come with the risk of getting killed unexpectedly (depends on your max bid price). If you can't handle the interruptions and are willing to pay more, stick to the default on-demand instance.
+4. Choose 'Request Spot Instances' if you want to save up to 90% on instance costs. Spot instances provide computer power at a much cheaper rate but come with the risk of getting killed unexpectedly (depends on your max bid price). If you can't handle the interruptions and are willing to pay more, stick to the default on-demand instance.
 
 ## **Installing the prerequisites**
 
@@ -53,7 +53,8 @@ sudo apt-get update && sudo apt-get upgrade
 ```
 
 Install Docker on the instance. You need to follow [this](https://docs.docker.com/engine/installation/linux/ubuntulinux/).
-The tutorial goes through updating your apt sources, installing the ```linux-image-extra``` kernel package and ```docker-engine```.
+The tutorial consists of updating your apt sources, installing the ```linux-image-extra``` kernel package and ```docker-engine```.
+
 
 To summarize,
 
@@ -145,7 +146,7 @@ In the EC2 instance, create a directory where your code and data will reside. Yo
 sudo apt-get install s3cmd
 ```
 
-One way of moving files onto the container is using docker's ```scp``` command. Unfortunately, with a lot of data and code, this can be quiet a hassle.
+One way of moving files onto the container is using docker's ```scp``` command. Unfortunately, with a lot of data and code, this can be quite a hassle.
 
 I recommend attaching a data volume to a container. Next time you run a container, use the `-v` flag.
 
