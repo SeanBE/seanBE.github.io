@@ -1,0 +1,313 @@
+    <!DOCTYPE html>
+<html lang="en-us">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<meta name="author" content="Sean Löfgren">
+		<meta name="description" content="Software engineer - Data Scientist">
+		
+		<meta name="generator" content="Hugo 0.15" />
+		<title>Deep Learning with AWS &middot; The Blog of Sean Löfgren</title>
+
+		<link rel="shortcut icon" href="http://seanbe.github.io/images/favicon.ico">
+		<link rel="stylesheet" href="http://seanbe.github.io/css/style.css">
+		<link rel="stylesheet" href="http://seanbe.github.io/css/highlight.css">
+
+		<link rel="stylesheet" href="http://seanbe.github.io/fontawesome/css/font-awesome.min.css">
+		<link href="http://seanBE.github.io/index.xml" rel="alternate" type="application/rss+xml" title="The Blog of Sean Löfgren" />
+	</head>
+
+    <body>
+       <nav class="main-nav">
+	
+
+	
+		<a href='http://seanbe.github.io/'> <span class="arrow">←</span>Home</a>
+	
+</nav>
+
+
+        <section id="wrapper">
+            <article class="post">
+                <header>
+                    <h1>Deep Learning with AWS</h1>
+                    <h2 class="headline">
+                    July 8, 2016
+                    <br>
+                    
+                    </h2>
+                </header>
+                <section id="post-body">
+                    
+
+<p>There are many tutorials on how to leverage Amazon&rsquo;s supreme computing power to perform deep learning tasks. I would like to take this opportunity to contribute to that collection.</p>
+
+<p>I started working with Amazon&rsquo;s EC2 instances for deep learning by reading some of these said tutorials including predominantly:</p>
+
+<ul>
+<li><a href="http://vasir.net/blog/opencl/installing-cuda-opencl-pyopencl-on-aws-ec2">Installing CUDA, OpenCL, and PyOpenCL on AWS EC2</a></li>
+<li><a href="https://www.kaggle.com/c/facial-keypoints-detection/details/deep-learning-tutorial">Deep Learning Tutorial for Kaggle&rsquo;s Facial Keypoints Detection</a></li>
+<li><a href="https://gist.github.com/erikbern/78ba519b97b440e10640">Installing TensorFlow on AWS</a></li>
+</ul>
+
+<p>I would launch an instance, install the necessary dependencies, and create an AMI. This would be repeated for each deep learning framework that I wanted to use (Theano, Caffe, Tensorflow etc.)</p>
+
+<p>I recently came upon <a href="https://github.com/NVIDIA/nvidia-docker">NVIDIA Docker</a> and I haven&rsquo;t stopped using it since. I&rsquo;m only storing one AMI now and it&rsquo;s much faster for me to update the frameworks and their underlying dependencies.
+NVIDIA Docker is a thin wrapper for <a href="https://www.docker.com/what-docker">Docker</a> that can, in addition to the default functionality, discover available GPU devices and their respective driver files.</p>
+
+<p>Throughout this tutorial, I&rsquo;m going to assume you&rsquo;ve selected one of the GPU EC2 instances, running Ubuntu 14.04.4 LTS (Trusty Tahr). Issues might arise if you don&rsquo;t follow.</p>
+
+<p>Following this tutorial, it took roughly 15 minutes, from launching the instance to having a container ready with Keras, Theano, and CUDA.</p>
+
+<h2 id="creating-the-ec2-instance:d0d3ef63b0c21019e7d059025c3f469f"><strong>Creating the EC2 Instance</strong></h2>
+
+<p>For starters, I recommend reading <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EC2_GetStarted.html">Getting Started with Amazon EC2 Linux Instances</a>.</p>
+
+<p>To summarize,</p>
+
+<ol>
+<li><p>Go to the EC2 page on the AWS Console and click on the blue Launch instance button.</p></li>
+
+<li><p>Choose the latest stable Ubuntu AMI. You can find it on the Quick Start and Community AMI panes.
+
+<figure >
+    
+        <img src="/images/ubuntu.png" />
+    
+    
+</figure>
+</p></li>
+
+<li><p>Select one of the GPU instances: g2.2xlarge (1 GPU), g2.8xlarge (4 GPUs).</p></li>
+
+<li><p>Choose &lsquo;Request Spot Instances&rsquo; if you want to save up to 90% on instance costs. Spot instances provide computer power at a much cheaper rate but they come with the risk of getting killed unexpectedly (depends on your max bid price). If you can&rsquo;t handle the interruptions and are willing to pay more, stick to the default on-demand instance.</p></li>
+</ol>
+
+<h2 id="installing-the-prerequisites:d0d3ef63b0c21019e7d059025c3f469f"><strong>Installing the prerequisites</strong></h2>
+
+<p>Connect to your instance. Read <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html">Connecting to Your Linux Instance Using SSH</a> for instructions.</p>
+
+<pre><code>ssh -i [my_keypair.pem] ubuntu@[dns_of_ec2_instance]  
+</code></pre>
+
+<blockquote>
+<p>Connecting to an instance running Ubuntu using SSH client.</p>
+</blockquote>
+
+<p>Once you&rsquo;ve made your way into the instance, it&rsquo;s time to start installing everything we need to start deep learning.</p>
+
+<p>In order to use NVIDIA Docker, we need to fulfill <a href="https://github.com/NVIDIA/nvidia-docker/wiki/Installation#prerequisites">Nvidia-docker prerequisites</a>.</p>
+
+<p>Update all the default packages on the instance.</p>
+
+<pre><code>sudo apt-get update &amp;&amp; sudo apt-get upgrade
+</code></pre>
+
+<p>Install Docker on the instance. You need to follow <a href="https://docs.docker.com/engine/installation/linux/ubuntulinux/">this</a>.
+The tutorial goes through updating your apt sources, installing the <code>linux-image-extra</code> kernel package and <code>docker-engine</code>.</p>
+
+<p>To summarize,</p>
+
+<pre><code>sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+</code></pre>
+
+<p>Create file <code>/etc/apt/sources.list.d/docker.list</code>.</p>
+
+<p>Add line <code>deb https://apt.dockerproject.org/repo ubuntu-trusty main</code></p>
+
+<pre><code>sudo apt-get update
+apt-cache policy docker-engine
+sudo apt-get install linux-image-extra-$(uname -r)
+sudo apt-get install docker-engine
+</code></pre>
+
+<p>If you&rsquo;ve followed all of those instructions, you can test it out using the following:</p>
+
+<pre><code>sudo docker run hello-world
+</code></pre>
+
+<p>Install the necessary graphics drivers. Read more <a href="http://www.howtogeek.com/242045/how-to-get-the-latest-nvidia-amd-or-intel-graphics-drivers-on-ubuntu/">here</a>.
+According to the PPA page, <code>nvidia-361</code> is the recommended version.</p>
+
+<pre><code>sudo add-apt-repository ppa:graphics-drivers/ppa
+sudo apt-get update
+sudo apt-get install nvidia-361
+</code></pre>
+
+<p>Install <code>nvidia-modprobe</code>. It loads the NVIDIA kernel module and creates NVIDIA character device files.</p>
+
+<pre><code>sudo apt-get install nvidia-modprobe
+</code></pre>
+
+<h2 id="installing-nvidia-docker:d0d3ef63b0c21019e7d059025c3f469f"><strong>Installing NVIDIA Docker</strong></h2>
+
+<p>If you&rsquo;ve followed the instructions above, the next few should be a breeze.</p>
+
+<p>Install NVIDIA Docker.</p>
+
+<pre><code>wget -P /tmp https://github.com/NVIDIA/nvidia-docker/releases/download/v1.0.0-rc.3/nvidia-docker_1.0.0.rc.3-1_amd64.deb
+
+sudo dpkg -i /tmp/nvidia-docker*.deb &amp;&amp; rm /tmp/nvidia-docker*.deb
+</code></pre>
+
+<p>The following instruction can be used to test everything so far. I&rsquo;ve also included what should be roughly returned from the command.</p>
+
+<pre><code>sudo nvidia-docker run --rm nvidia/cuda nvidia-smi
+
++-----------------------------------------------------------------------------+
+| NVIDIA-SMI 361.45.18              Driver Version: 361.45.18                 |
+|-------------------------------+----------------------+----------------------+
+| GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
+|===============================+======================+======================|
+|   0  GRID K520           Off  | 0000:00:03.0     Off |                  N/A |
+| N/A   29C    P8    19W / 125W |     11MiB /  4095MiB |      0%      Default |
++-------------------------------+----------------------+----------------------+
+
++-----------------------------------------------------------------------------+
+| Processes:                                                       GPU Memory |
+|  GPU       PID  Type  Process name                               Usage      |
+|=============================================================================|
+|  No running processes found                                                 |
++-----------------------------------------------------------------------------+
+</code></pre>
+
+<p>I highly recommend creating an AMI at this point in time. You will avoid having to follow this tutorial again.
+Read <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami-ebs.html">Creating an AMI EBS</a>.</p>
+
+<p>Select a Docker image from <a href="https://hub.docker.com/u/kaixhin/">Kaixhin&rsquo;s repository</a>. Let&rsquo;s pick <code>kaixhin/cuda-keras</code> and download it.</p>
+
+<pre><code>sudo nvidia-docker pull kaixhin/cuda-keras
+</code></pre>
+
+<p>Create a container with the image.</p>
+
+<pre><code>sudo nvidia-docker run -it kaixhin/cuda-keras
+</code></pre>
+
+<p>Voila! You&rsquo;ve got yourself a container setup with Keras, Theano and CUDA.</p>
+
+<h2 id="extras:d0d3ef63b0c21019e7d059025c3f469f"><strong>Extras</strong></h2>
+
+<h4 id="adding-code-and-data:d0d3ef63b0c21019e7d059025c3f469f">Adding code and data</h4>
+
+<p>You&rsquo;ve got a container now but no code or data. What is the point?!?!</p>
+
+<p>In the EC2 instance, create a directory where your code and data will reside. You can use <code>s3cmd</code> to move data from/to Amazon&rsquo;s S3.</p>
+
+<pre><code>sudo apt-get install s3cmd
+</code></pre>
+
+<p>One way of moving files onto the container is using docker&rsquo;s <code>scp</code> command. Unfortunately, with a lot of data and code, this can be quiet a hassle.</p>
+
+<p>I recommend attaching a data volume to a container. Next time you run a container, use the <code>-v</code> flag.</p>
+
+<pre><code>sudo nvidia-docker -v /home/ubuntu/[HOST_DIR]:/[CONTAINER_DIR] -it kaixhin/cuda-keras
+</code></pre>
+
+<p>cd to <code>/[CONTAINER_DIR]</code> and you will find everything that is in the <code>[HOST_DIR]</code>. Any changes in <code>[HOST_DIR]</code> will be directly reflected in the container (without having to run again).</p>
+
+<h4 id="additional-dependencies:d0d3ef63b0c21019e7d059025c3f469f">Additional dependencies</h4>
+
+<p>Go to <a href="https://hub.docker.com/u/kaixhin/">Kaixhin&rsquo;s repository</a> and download the Dockerfile related to the image you&rsquo;re interested in building.</p>
+
+<p>Modify the Dockerfile and copy it over to your EC2 instance. I recommend reading <a href="https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/">Best practices for writing Dockerfiles</a>.</p>
+
+<p>Create a directory <code>[DOCKER_DIR]</code> and move the modified Dockerfile into that directory.</p>
+
+<p>Run the following:</p>
+
+<pre><code>sudo nvidia-docker build [DOCKER_DIR]
+</code></pre>
+
+<p>Next time you run a container, you can use the id of the image you just built.</p>
+
+<h3 id="conclusion:d0d3ef63b0c21019e7d059025c3f469f">Conclusion</h3>
+
+<p>I hope you enjoyed my tutorial. Once I&rsquo;ve got everything set up, I&rsquo;ll usually run some code, detach from my container and tail the logs from the host.</p>
+
+                </section>
+            </article>
+
+            <footer id="post-meta" class="clearfix">
+                    <img class="avatar" src="http://seanbe.github.io/images/avatar.png">
+                    <div>
+                        <span class="dark">Sean Löfgren</span>
+                        <span>Software engineer - Data Scientist</span>
+                    </div>
+            </footer>
+
+            <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'seanBE';
+    var disqus_identifier = 'http:\/\/seanbe.github.io\/post\/deep-learning-aws\/';
+    var disqus_title = 'Deep Learning with AWS';
+    var disqus_url = 'http:\/\/seanbe.github.io\/post\/deep-learning-aws\/';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+            <ul id="post-list" class="archive readmore">
+    <h3>Read more</h3>
+    
+    
+        
+        <li>
+            <a href="http://seanbe.github.io/post/deep-learning-aws/">Deep Learning with AWS<aside class="dates">Jul 8</aside></a>
+        </li>
+        
+   
+    
+        
+        <li>
+            <a href="http://seanbe.github.io/post/first-post/">My First Post!<aside class="dates">Jan 2</aside></a>
+        </li>
+        
+   
+</ul>
+
+            <footer id="footer">
+    
+        <div id="social">
+
+	
+    <a class="symbol" href="https://github.com/SeanBE">
+        <i class="fa fa-github"></i>
+    </a>
+    
+    <a class="symbol" href="https://www.linkedin.com/in/seanlofgren">
+        <i class="fa fa-linkedin-square"></i>
+    </a>
+    
+    <a class="symbol" href="https://www.twitter.com/seanBE">
+        <i class="fa fa-twitter"></i>
+    </a>
+    
+
+</div>
+
+    
+    <p class="small">
+        © Copyright 2016 Sean Löfgren
+    </p>
+</footer>
+
+        </section>
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="http://seanbe.github.io/js/main.js"></script>
+<script src="http://seanbe.github.io/js/highlight.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+    </body>
+</html>
