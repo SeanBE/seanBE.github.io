@@ -2,6 +2,7 @@ baseurl: "http://seanBE.github.io/"
 languageCode: "en-us"
 title: "The Blog of Sean Löfgren"
 disqusShortname: "seanBE"
+googleAnalytics: "UA-65235616-1"
 
 params:
     name: "Sean Löfgren"
