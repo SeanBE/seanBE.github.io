@@ -180,4 +180,6 @@ sudo nvidia-docker build [DOCKER_DIR]
 Next time you run a container, you can use the id of the image you just built.
 
 ### Conclusion
-I hope you enjoyed my tutorial. Once I've got everything set up, I'll usually run some code, detach from my container and tail the logs from the host.
+Once I've got everything set up, I'll usually run some code, detach from my container and tail the logs from the host.
+I hope you enjoyed my tutorial and found it useful. If you have any suggestions or questions, feel free to reach out in the comments below.
+
