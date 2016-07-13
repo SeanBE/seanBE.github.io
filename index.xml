@@ -201,7 +201,8 @@ Read &lt;a href=&#34;http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating
 
 &lt;h3 id=&#34;conclusion:d0d3ef63b0c21019e7d059025c3f469f&#34;&gt;Conclusion&lt;/h3&gt;
 
-&lt;p&gt;I hope you enjoyed my tutorial. Once I&amp;rsquo;ve got everything set up, I&amp;rsquo;ll usually run some code, detach from my container and tail the logs from the host.&lt;/p&gt;
+&lt;p&gt;Once I&amp;rsquo;ve got everything set up, I&amp;rsquo;ll usually run some code, detach from my container and tail the logs from the host.
+I hope you enjoyed my tutorial and found it useful. If you have any suggestions or questions, feel free to reach out in the comments below.&lt;/p&gt;
 </description>
     </item>
     
