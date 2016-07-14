@@ -6,8 +6,7 @@ googleAnalytics: "UA-65235616-1"
 
 params:
     name: "Sean Löfgren"
-    bio: "Software engineer - Data Scientist"
-    googleAnalytics: "UA-65235616-1"
+    bio: "Software engineer"
 
 social:
     twitter: "https://www.twitter.com/seanBE"
