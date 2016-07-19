@@ -205,7 +205,7 @@ Read <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami
 
 <p>I recommend attaching a data volume to a container. Next time you run a container, use the <code>-v</code> flag.</p>
 
-<pre><code>sudo nvidia-docker -v /home/ubuntu/[HOST_DIR]:/[CONTAINER_DIR] -it kaixhin/cuda-keras
+<pre><code>sudo nvidia-docker run -v /home/ubuntu/[HOST_DIR]:/[CONTAINER_DIR] -it kaixhin/cuda-keras
 </code></pre>
 
 <p>cd to <code>/[CONTAINER_DIR]</code> and you will find everything that is in the <code>[HOST_DIR]</code>. Any changes in <code>[HOST_DIR]</code> will be directly reflected in the container (without having to run again).</p>

@@ -179,7 +179,7 @@ Read &lt;a href=&#34;http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating
 
 &lt;p&gt;I recommend attaching a data volume to a container. Next time you run a container, use the &lt;code&gt;-v&lt;/code&gt; flag.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;sudo nvidia-docker -v /home/ubuntu/[HOST_DIR]:/[CONTAINER_DIR] -it kaixhin/cuda-keras
+&lt;pre&gt;&lt;code&gt;sudo nvidia-docker run -v /home/ubuntu/[HOST_DIR]:/[CONTAINER_DIR] -it kaixhin/cuda-keras
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;cd to &lt;code&gt;/[CONTAINER_DIR]&lt;/code&gt; and you will find everything that is in the &lt;code&gt;[HOST_DIR]&lt;/code&gt;. Any changes in &lt;code&gt;[HOST_DIR]&lt;/code&gt; will be directly reflected in the container (without having to run again).&lt;/p&gt;
