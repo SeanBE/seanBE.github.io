@@ -159,7 +159,7 @@ One way of moving files onto the container is using docker's ```scp``` command. 
 I recommend attaching a data volume to a container. Next time you run a container, use the `-v` flag.
 
 ```
-sudo nvidia-docker -v /home/ubuntu/[HOST_DIR]:/[CONTAINER_DIR] -it kaixhin/cuda-keras
+sudo nvidia-docker run -v /home/ubuntu/[HOST_DIR]:/[CONTAINER_DIR] -it kaixhin/cuda-keras
 ```
 cd to `/[CONTAINER_DIR]` and you will find everything that is in the `[HOST_DIR]`. Any changes in `[HOST_DIR]` will be directly reflected in the container (without having to run again).
 
