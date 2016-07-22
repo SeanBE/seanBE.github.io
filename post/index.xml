@@ -206,18 +206,5 @@ I hope you enjoyed my tutorial and found it useful. If you have any suggestions 
 </description>
     </item>
     
-    <item>
-      <title>My First Post!</title>
-      <link>http://seanbe.github.io/post/first-post/</link>
-      <pubDate>Sat, 02 Jan 2016 20:01:51 +0100</pubDate>
-      
-      <guid>http://seanbe.github.io/post/first-post/</guid>
-      <description>&lt;p&gt;I&amp;rsquo;m Sean Löfgren and this is my blog!&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;print &amp;quot;Hello, world!&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-</description>
-    </item>
-    
   </channel>
 </rss>
