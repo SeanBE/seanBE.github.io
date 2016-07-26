@@ -11,6 +11,9 @@ keywords:
   - "docker"
 ---
 
+**Update**: I recommend reading Nvidia' [GPU Server Application Deployment Made Easy](https://devblogs.nvidia.com/parallelforall/nvidia-docker-gpu-server-application-deployment-made-easy/) for an alternative approach (Ansible) to setting up the NVDIA-Docker plugin. 
+
+
 There are many tutorials on how to leverage Amazon's supreme computing power to perform deep learning tasks. I would like to take this opportunity to contribute to that collection.
 
 I started working with Amazon's EC2 instances for deep learning by reading some of these tutorials, including predominantly:
