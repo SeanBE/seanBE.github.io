@@ -9,6 +9,8 @@ keywords:
   - "gpu"
   - "NVIDIA"
   - "docker"
+  - "nvidia-smi"
+  - "nvidia-docker"
 ---
 
 **Update**: I recommend reading Nvidia' [GPU Server Application Deployment Made Easy](https://devblogs.nvidia.com/parallelforall/nvidia-docker-gpu-server-application-deployment-made-easy/) for an alternative approach (Ansible) to setting up the NVDIA-Docker plugin. 
