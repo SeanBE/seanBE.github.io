@@ -1,7 +1,7 @@
 ---
 date: "2016-07-29"
 title: "test"
-draft: "true"
+draft: true
 keywords:
   - "test"
 ---
