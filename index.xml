@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>The Blog of Sean Löfgren</title>
-    <link>http://seanBE.github.io/</link>
-    <description>Recent content on The Blog of Sean Löfgren</description>
+    <title>Sean Löfgren</title>
+    <link>http://seanbe.github.io/index.xml</link>
+    <description>Recent content on Sean Löfgren</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <language>en</language>
     <lastBuildDate>Fri, 08 Jul 2016 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://seanBE.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://seanbe.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Deep Learning with AWS</title>
-      <link>http://seanbe.github.io/post/deep-learning-aws/</link>
+      <link>http://seanbe.github.io/blog/deep-learning-aws/</link>
       <pubDate>Fri, 08 Jul 2016 00:00:00 +0000</pubDate>
       
-      <guid>http://seanbe.github.io/post/deep-learning-aws/</guid>
+      <guid>http://seanbe.github.io/blog/deep-learning-aws/</guid>
       <description>
 
 &lt;p&gt;&lt;strong&gt;Update&lt;/strong&gt;: I recommend reading Nvidia&amp;rsquo; &lt;a href=&#34;https://devblogs.nvidia.com/parallelforall/nvidia-docker-gpu-server-application-deployment-made-easy/&#34;&gt;GPU Server Application Deployment Made Easy&lt;/a&gt; for an alternative approach (Ansible) to setting up the NVDIA-Docker plugin.&lt;/p&gt;
@@ -38,16 +38,15 @@ NVIDIA Docker is a thin wrapper for &lt;a href=&#34;https://www.docker.com/what-
 
 &lt;p&gt;It will take roughly 15 minutes to complete this tutorial, from launching the instance to having a container ready with Keras, Theano, and CUDA.&lt;/p&gt;
 
-&lt;h2 id=&#34;creating-the-ec2-instance:d0d3ef63b0c21019e7d059025c3f469f&#34;&gt;&lt;strong&gt;Creating the EC2 Instance&lt;/strong&gt;&lt;/h2&gt;
+&lt;h2 id=&#34;creating-the-ec2-instance&#34;&gt;&lt;strong&gt;Creating the EC2 Instance&lt;/strong&gt;&lt;/h2&gt;
 
 &lt;p&gt;For starters, I recommend reading &lt;a href=&#34;http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EC2_GetStarted.html&#34;&gt;Getting Started with Amazon EC2 Linux Instances&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;To summarize,&lt;/p&gt;
 
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;Go to the EC2 page on the AWS Console and click on the blue Launch instance button.&lt;/p&gt;&lt;/li&gt;
+&lt;p&gt;1.Go to the EC2 page on the AWS Console and click on the blue Launch instance button.&lt;/p&gt;
 
-&lt;li&gt;&lt;p&gt;Choose the latest stable Ubuntu AMI. You can find it on the Quick Start and Community AMI panes.
+&lt;p&gt;2.Choose the latest stable Ubuntu AMI. You can find it on the Quick Start and Community AMI panes.
 
 &lt;figure &gt;
     
@@ -55,14 +54,13 @@ NVIDIA Docker is a thin wrapper for &lt;a href=&#34;https://www.docker.com/what-
     
     
 &lt;/figure&gt;
-&lt;/p&gt;&lt;/li&gt;
+&lt;/p&gt;
 
-&lt;li&gt;&lt;p&gt;Select one of the GPU instances: g2.2xlarge (1 GPU), g2.8xlarge (4 GPUs).&lt;/p&gt;&lt;/li&gt;
+&lt;p&gt;3.Select one of the GPU instances: g2.2xlarge (1 GPU), g2.8xlarge (4 GPUs).&lt;/p&gt;
 
-&lt;li&gt;&lt;p&gt;Choose &amp;lsquo;Request Spot Instances&amp;rsquo; if you want to save up to 90% on instance costs. Spot instances provide computer power at a much cheaper rate but come with the risk of getting killed unexpectedly (depends on your max bid price). If you can&amp;rsquo;t handle the interruptions and are willing to pay more, stick to the default on-demand instance.&lt;/p&gt;&lt;/li&gt;
-&lt;/ol&gt;
+&lt;p&gt;4.Choose &amp;lsquo;Request Spot Instances&amp;rsquo; if you want to save up to 90% on instance costs. Spot instances provide computer power at a much cheaper rate but come with the risk of getting killed unexpectedly (depends on your max bid price). If you can&amp;rsquo;t handle the interruptions and are willing to pay more, stick to the default on-demand instance.&lt;/p&gt;
 
-&lt;h2 id=&#34;installing-the-prerequisites:d0d3ef63b0c21019e7d059025c3f469f&#34;&gt;&lt;strong&gt;Installing the prerequisites&lt;/strong&gt;&lt;/h2&gt;
+&lt;h2 id=&#34;installing-the-prerequisites&#34;&gt;&lt;strong&gt;Installing the prerequisites&lt;/strong&gt;&lt;/h2&gt;
 
 &lt;p&gt;Connect to your instance. Read &lt;a href=&#34;http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html&#34;&gt;Connecting to Your Linux Instance Using SSH&lt;/a&gt; for instructions.&lt;/p&gt;
 
@@ -118,7 +116,7 @@ sudo apt-get install nvidia-361
 &lt;pre&gt;&lt;code&gt;sudo apt-get install nvidia-modprobe
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;installing-nvidia-docker:d0d3ef63b0c21019e7d059025c3f469f&#34;&gt;&lt;strong&gt;Installing NVIDIA Docker&lt;/strong&gt;&lt;/h2&gt;
+&lt;h2 id=&#34;installing-nvidia-docker&#34;&gt;&lt;strong&gt;Installing NVIDIA Docker&lt;/strong&gt;&lt;/h2&gt;
 
 &lt;p&gt;If you&amp;rsquo;ve followed the instructions above, the next few should be a breeze.&lt;/p&gt;
 
@@ -166,9 +164,9 @@ Read &lt;a href=&#34;http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating
 
 &lt;p&gt;Voila! You&amp;rsquo;ve got yourself a container setup with Keras, Theano and CUDA.&lt;/p&gt;
 
-&lt;h2 id=&#34;extras:d0d3ef63b0c21019e7d059025c3f469f&#34;&gt;&lt;strong&gt;Extras&lt;/strong&gt;&lt;/h2&gt;
+&lt;h2 id=&#34;extras&#34;&gt;&lt;strong&gt;Extras&lt;/strong&gt;&lt;/h2&gt;
 
-&lt;h4 id=&#34;adding-code-and-data:d0d3ef63b0c21019e7d059025c3f469f&#34;&gt;Adding code and data&lt;/h4&gt;
+&lt;h4 id=&#34;adding-code-and-data&#34;&gt;Adding code and data&lt;/h4&gt;
 
 &lt;p&gt;You&amp;rsquo;ve got a container now but no code or data. What is the point?!?!&lt;/p&gt;
 
@@ -186,7 +184,7 @@ Read &lt;a href=&#34;http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating
 
 &lt;p&gt;cd to &lt;code&gt;/[CONTAINER_DIR]&lt;/code&gt; and you will find everything that is in the &lt;code&gt;[HOST_DIR]&lt;/code&gt;. Any changes in &lt;code&gt;[HOST_DIR]&lt;/code&gt; will be directly reflected in the container (without having to run again).&lt;/p&gt;
 
-&lt;h4 id=&#34;additional-dependencies:d0d3ef63b0c21019e7d059025c3f469f&#34;&gt;Additional dependencies&lt;/h4&gt;
+&lt;h4 id=&#34;additional-dependencies&#34;&gt;Additional dependencies&lt;/h4&gt;
 
 &lt;p&gt;Go to &lt;a href=&#34;https://hub.docker.com/u/kaixhin/&#34;&gt;Kaixhin&amp;rsquo;s repository&lt;/a&gt; and download the Dockerfile related to the image you&amp;rsquo;re interested in building.&lt;/p&gt;
 
@@ -201,7 +199,7 @@ Read &lt;a href=&#34;http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating
 
 &lt;p&gt;Next time you run a container, you can use the id of the image you just built.&lt;/p&gt;
 
-&lt;h3 id=&#34;conclusion:d0d3ef63b0c21019e7d059025c3f469f&#34;&gt;Conclusion&lt;/h3&gt;
+&lt;h3 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h3&gt;
 
 &lt;p&gt;Once I&amp;rsquo;ve got everything set up, I&amp;rsquo;ll usually run some code, detach from my container and tail the logs from the host.
 I hope you enjoyed my tutorial and found it useful. If you have any suggestions or questions, feel free to reach out in the comments below.&lt;/p&gt;

@@ -1,47 +1,121 @@
-    <!DOCTYPE html>
-<html lang="en-us">
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta content="AWS, EC2, deep learning, machine learning, gpu, NVIDIA, docker, nvidia-smi, nvidia-docker" name="keywords">
-
-		<meta name="author" content="Sean Löfgren">
-		<meta name="description" content="Software engineer">
-		
-		<meta name="generator" content="Hugo 0.15" />
-		<title>Deep Learning with AWS &middot; The Blog of Sean Löfgren</title>
-
-		<link rel="shortcut icon" href="http://seanbe.github.io/images/favicon.ico">
-		<link rel="stylesheet" href="http://seanbe.github.io/css/style.css">
-		<link rel="stylesheet" href="http://seanbe.github.io/css/highlight.css">
-
-		<link rel="stylesheet" href="http://seanbe.github.io/fontawesome/css/font-awesome.min.css">
-		<link href="http://seanBE.github.io/index.xml" rel="alternate" type="application/rss+xml" title="The Blog of Sean Löfgren" />
-	</head>
-
-    <body>
-       <nav class="main-nav">
-	
-
-	
-		<a href='http://seanbe.github.io/'> <span class="arrow">←</span>Home</a>
-	
-</nav>
 
 
-        <section id="wrapper">
-            <article class="post">
-                <header>
-                    <h1>Deep Learning with AWS</h1>
-                    <h2 class="headline">
-                    July 8, 2016
-                    <br>
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<meta name="author" content="Sean Löfgren">
+<meta name="description" content="The Blog of Sean Löfgren">
+
+<base href="http://seanbe.github.io/">
+<title>
+
+
+     Sean Löfgren - Deep Learning with AWS 
+
+</title>
+<link rel="canonical" href="http://seanbe.github.io/blog/deep-learning-aws/">
+
+
+
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/default.min.css">
+
+
+<link rel="stylesheet" href="http://seanbe.github.io/css/reset.css">
+<link rel="stylesheet" href="http://seanbe.github.io/css/main.css">
+
+
+
+
+<link rel="shortcut icon"
+
+    href="http://seanBE.github.io/images/favicon.ico"
+
+>
+
+
+
+</head>
+
+
+<body lang="en">
+
+
+<section class="header">
+
+    <div class="container">
+        <a href="http://seanbe.github.io/"><img class="logo" src="http://seanBE.github.io/images/avatar.png" /></a>
+        <div class="content">
+            <a href="http://seanbe.github.io/"><div class="name"><h1>Sean Löfgren</h1></div></a>
+            <nav>
+                <ul>
                     
-                    </h2>
-                </header>
-                <section id="post-body">
+                        
+                            
+                        
                     
+                    
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<section class="icons">
+    <div class="container">
+        <div class="content">
+        	
+            <a href="https://github.com/SeanBE" target="_blank">
+              <i class="icon ion-social-github"></i>
+            </a>
+          
+            <a href="https://www.linkedin.com/in/seanlofgren" target="_blank">
+              <i class="icon ion-social-linkedin"></i>
+            </a>
+          
+            <a href="https://www.twitter.com/seanBE" target="_blank">
+              <i class="icon ion-social-twitter"></i>
+            </a>
+          
+
+          
+              <a href="http://seanBE.github.io/index.xml">
+                  <i class="icon ion-social-rss larger"></i>
+              </a>
+          
+        </div>
+    </div>
+</section>
+
+<section class="main post non-narrow zero-top-spacing">
+    <div class="container">
+        <div class="content">
+            <div class="front-matter">
+                <div class="title-container">
+                    <div class="page-heading">
+
+    Deep Learning with AWS
+
+</div>
+
+                </div>
+                <div class="meta">
+                    <div class="date">Jul 8, 2016</div>
+                    <div class="reading-time"><div class="middot"></div>5 minute read</div>
+                </div>
+            </div>
+            <div class="markdown">
+                
 
 <p><strong>Update</strong>: I recommend reading Nvidia&rsquo; <a href="https://devblogs.nvidia.com/parallelforall/nvidia-docker-gpu-server-application-deployment-made-easy/">GPU Server Application Deployment Made Easy</a> for an alternative approach (Ansible) to setting up the NVDIA-Docker plugin.</p>
 
@@ -64,16 +138,15 @@ NVIDIA Docker is a thin wrapper for <a href="https://www.docker.com/what-docker"
 
 <p>It will take roughly 15 minutes to complete this tutorial, from launching the instance to having a container ready with Keras, Theano, and CUDA.</p>
 
-<h2 id="creating-the-ec2-instance:d0d3ef63b0c21019e7d059025c3f469f"><strong>Creating the EC2 Instance</strong></h2>
+<h2 id="creating-the-ec2-instance"><strong>Creating the EC2 Instance</strong></h2>
 
 <p>For starters, I recommend reading <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EC2_GetStarted.html">Getting Started with Amazon EC2 Linux Instances</a>.</p>
 
 <p>To summarize,</p>
 
-<ol>
-<li><p>Go to the EC2 page on the AWS Console and click on the blue Launch instance button.</p></li>
+<p>1.Go to the EC2 page on the AWS Console and click on the blue Launch instance button.</p>
 
-<li><p>Choose the latest stable Ubuntu AMI. You can find it on the Quick Start and Community AMI panes.
+<p>2.Choose the latest stable Ubuntu AMI. You can find it on the Quick Start and Community AMI panes.
 
 <figure >
     
@@ -81,14 +154,13 @@ NVIDIA Docker is a thin wrapper for <a href="https://www.docker.com/what-docker"
     
     
 </figure>
-</p></li>
+</p>
 
-<li><p>Select one of the GPU instances: g2.2xlarge (1 GPU), g2.8xlarge (4 GPUs).</p></li>
+<p>3.Select one of the GPU instances: g2.2xlarge (1 GPU), g2.8xlarge (4 GPUs).</p>
 
-<li><p>Choose &lsquo;Request Spot Instances&rsquo; if you want to save up to 90% on instance costs. Spot instances provide computer power at a much cheaper rate but come with the risk of getting killed unexpectedly (depends on your max bid price). If you can&rsquo;t handle the interruptions and are willing to pay more, stick to the default on-demand instance.</p></li>
-</ol>
+<p>4.Choose &lsquo;Request Spot Instances&rsquo; if you want to save up to 90% on instance costs. Spot instances provide computer power at a much cheaper rate but come with the risk of getting killed unexpectedly (depends on your max bid price). If you can&rsquo;t handle the interruptions and are willing to pay more, stick to the default on-demand instance.</p>
 
-<h2 id="installing-the-prerequisites:d0d3ef63b0c21019e7d059025c3f469f"><strong>Installing the prerequisites</strong></h2>
+<h2 id="installing-the-prerequisites"><strong>Installing the prerequisites</strong></h2>
 
 <p>Connect to your instance. Read <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html">Connecting to Your Linux Instance Using SSH</a> for instructions.</p>
 
@@ -144,7 +216,7 @@ sudo apt-get install nvidia-361
 <pre><code>sudo apt-get install nvidia-modprobe
 </code></pre>
 
-<h2 id="installing-nvidia-docker:d0d3ef63b0c21019e7d059025c3f469f"><strong>Installing NVIDIA Docker</strong></h2>
+<h2 id="installing-nvidia-docker"><strong>Installing NVIDIA Docker</strong></h2>
 
 <p>If you&rsquo;ve followed the instructions above, the next few should be a breeze.</p>
 
@@ -192,9 +264,9 @@ Read <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami
 
 <p>Voila! You&rsquo;ve got yourself a container setup with Keras, Theano and CUDA.</p>
 
-<h2 id="extras:d0d3ef63b0c21019e7d059025c3f469f"><strong>Extras</strong></h2>
+<h2 id="extras"><strong>Extras</strong></h2>
 
-<h4 id="adding-code-and-data:d0d3ef63b0c21019e7d059025c3f469f">Adding code and data</h4>
+<h4 id="adding-code-and-data">Adding code and data</h4>
 
 <p>You&rsquo;ve got a container now but no code or data. What is the point?!?!</p>
 
@@ -212,7 +284,7 @@ Read <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami
 
 <p>cd to <code>/[CONTAINER_DIR]</code> and you will find everything that is in the <code>[HOST_DIR]</code>. Any changes in <code>[HOST_DIR]</code> will be directly reflected in the container (without having to run again).</p>
 
-<h4 id="additional-dependencies:d0d3ef63b0c21019e7d059025c3f469f">Additional dependencies</h4>
+<h4 id="additional-dependencies">Additional dependencies</h4>
 
 <p>Go to <a href="https://hub.docker.com/u/kaixhin/">Kaixhin&rsquo;s repository</a> and download the Dockerfile related to the image you&rsquo;re interested in building.</p>
 
@@ -227,28 +299,22 @@ Read <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami
 
 <p>Next time you run a container, you can use the id of the image you just built.</p>
 
-<h3 id="conclusion:d0d3ef63b0c21019e7d059025c3f469f">Conclusion</h3>
+<h3 id="conclusion">Conclusion</h3>
 
 <p>Once I&rsquo;ve got everything set up, I&rsquo;ll usually run some code, detach from my container and tail the logs from the host.
 I hope you enjoyed my tutorial and found it useful. If you have any suggestions or questions, feel free to reach out in the comments below.</p>
 
-                </section>
-            </article>
-
-            <footer id="post-meta" class="clearfix">
-                    <img class="avatar" src="http://seanbe.github.io/images/avatar.png">
-                    <div>
-                        <span class="dark">Sean Löfgren</span>
-                        <span>Software engineer</span>
-                    </div>
-            </footer>
-
-            <div id="disqus_thread"></div>
+                <br>
+                <p><a href="blog">Back to posts</a></p>
+            </div>
+            <br>
+            <div class="disqus">
+                <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'seanBE';
-    var disqus_identifier = 'http:\/\/seanbe.github.io\/post\/deep-learning-aws\/';
+    var disqus_identifier = 'http:\/\/seanbe.github.io\/blog\/deep-learning-aws\/';
     var disqus_title = 'Deep Learning with AWS';
-    var disqus_url = 'http:\/\/seanbe.github.io\/post\/deep-learning-aws\/';
+    var disqus_url = 'http:\/\/seanbe.github.io\/blog\/deep-learning-aws\/';
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
@@ -258,63 +324,21 @@ I hope you enjoyed my tutorial and found it useful. If you have any suggestions 
 </script>
 <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-
-            <ul id="post-list" class="archive readmore">
-    <h3>Read more</h3>
-    
-    
-        
-        <li>
-            <a href="http://seanbe.github.io/post/deep-learning-aws/">Deep Learning with AWS<aside class="dates">Jul 8</aside></a>
-        </li>
-        
-   
-</ul>
-
-            <footer id="footer">
-    
-        <div id="social">
-
-	
-    <a class="symbol" href="https://github.com/SeanBE">
-        <i class="fa fa-github"></i>
-    </a>
-    
-    <a class="symbol" href="https://www.linkedin.com/in/seanlofgren">
-        <i class="fa fa-linkedin-square"></i>
-    </a>
-    
-    <a class="symbol" href="https://www.twitter.com/seanBE">
-        <i class="fa fa-twitter"></i>
-    </a>
-    
-
-</div>
-
-    
-    <p class="small">
-        © Copyright 2016 Sean Löfgren
-    </p>
-</footer>
-
-        </section>
-
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script src="http://seanbe.github.io/js/main.js"></script>
-<script src="http://seanbe.github.io/js/highlight.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>
+            </div>
+        </div>
+    </div>
+</section>
 
 
-<script>
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
+  
 
-ga('create', 'UA-65235616-1', 'auto');
-ga('send', 'pageview');
-</script>
+  <script type="text/javascript">
+    hljs.initHighlightingOnLoad();
+  </script>
 
 
-    </body>
+
+</body>
 </html>
+
