@@ -1,14 +1,18 @@
 baseurl: "http://seanBE.github.io/"
-languageCode: "en-us"
-title: "The Blog of Sean Löfgren"
+languageCode: "en"
+title: "Sean Löfgren"
 disqusShortname: "seanBE"
 googleAnalytics: "UA-65235616-1"
+theme: "cocoa-eh"
 
 params:
     name: "Sean Löfgren"
-    bio: "Software engineer"
+    description: "The Blog of Sean Löfgren"
+    logofile: "images/avatar.png"
+    faviconfile: "images/favicon.ico"
+    highlightjs: true
 
 social:
     twitter: "https://www.twitter.com/seanBE"
     github: "https://github.com/SeanBE"
-    linkedin-square: "https://www.linkedin.com/in/seanlofgren"
+    linkedin: "https://www.linkedin.com/in/seanlofgren"

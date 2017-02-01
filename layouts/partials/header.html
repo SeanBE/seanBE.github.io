@@ -1,0 +1,55 @@
+<!-- Original: https://github.com/fuegowolf/cocoa-eh-hugo-theme/blob/master/layouts/partials/header.html -->
+
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}">
+
+{{ partial "head.html" . }}
+
+<body lang="{{ .Site.LanguageCode }}">
+
+{{ if .IsPage }}
+<section class="header">
+{{ else }}
+<section class="header header-home">
+{{ end }}
+    <div class="container">
+        <a href="{{ .Site.BaseURL }}"><img class="logo" src="{{ .Site.Params.logofile | absURL }}" /></a>
+        <div class="content">
+            <a href="{{ .Site.BaseURL }}"><div class="name"><h1>{{ .Site.Title }}</h1></div></a>
+            <nav>
+                <ul>
+                    {{ range .Site.Sections }}
+                        {{ range first 1 (where .Pages "Section" "ne" "")}}
+                            {{ if ne .Section "blog"}}
+                            <a href="{{ .Section | urlize }}"><li>{{ .Section }}</li></a>
+                            {{ end }}
+                        {{ end }}
+                    {{ end }}
+                    {{ range where .Site.RegularPages "Section" ""}}
+                        {{ if ne .Title "Home"}}
+                            <a href="{{ .Permalink }}"><li>{{ .Title }}</li></a>
+                        {{ end }}
+                    {{ end }}
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<section class="icons">
+    <div class="container">
+        <div class="content">
+        	{{ range $key, $val := .Site.Social }}
+            <a href="{{ $val }}" target="_blank">
+              <i class="icon ion-social-{{ $key }}"></i>
+            </a>
+          {{ end }}
+
+          {{ if .Site.RSSLink }}
+              <a href="{{ .Site.RSSLink }}">
+                  <i class="icon ion-social-rss larger"></i>
+              </a>
+          {{ end }}
+        </div>
+    </div>
+</section>

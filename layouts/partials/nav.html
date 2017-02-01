@@ -1,7 +1,0 @@
-<nav class="main-nav">
-	{{ $url := replace .Permalink .Site.BaseURL "" }}
-
-	{{ if not .IsHome }}
-		<a href='{{ .Site.BaseURL }}'> <span class="arrow">←</span>Home</a>
-	{{ end }}
-</nav>
