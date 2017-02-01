@@ -13,7 +13,7 @@ keywords:
   - "nvidia-docker"
 ---
 
-**Update**: I recommend reading Nvidia' [GPU Server Application Deployment Made Easy](https://devblogs.nvidia.com/parallelforall/nvidia-docker-gpu-server-application-deployment-made-easy/) for an alternative approach (Ansible) to setting up the NVDIA-Docker plugin. 
+**Update**: I recommend reading Nvidia' [GPU Server Application Deployment Made Easy](https://devblogs.nvidia.com/parallelforall/nvidia-docker-gpu-server-application-deployment-made-easy/) for an alternative approach (Ansible) to setting up the NVDIA-Docker plugin.
 
 
 There are many tutorials on how to leverage Amazon's supreme computing power to perform deep learning tasks. I would like to take this opportunity to contribute to that collection.
@@ -39,14 +39,14 @@ For starters, I recommend reading [Getting Started with Amazon EC2 Linux Instanc
 
 To summarize,
 
-1. Go to the EC2 page on the AWS Console and click on the blue Launch instance button.
+1.Go to the EC2 page on the AWS Console and click on the blue Launch instance button.
 
-2. Choose the latest stable Ubuntu AMI. You can find it on the Quick Start and Community AMI panes.
+2.Choose the latest stable Ubuntu AMI. You can find it on the Quick Start and Community AMI panes.
 {{< figure src="/images/ubuntu.png">}}
 
-3. Select one of the GPU instances: g2.2xlarge (1 GPU), g2.8xlarge (4 GPUs).
+3.Select one of the GPU instances: g2.2xlarge (1 GPU), g2.8xlarge (4 GPUs).
 
-4. Choose 'Request Spot Instances' if you want to save up to 90% on instance costs. Spot instances provide computer power at a much cheaper rate but come with the risk of getting killed unexpectedly (depends on your max bid price). If you can't handle the interruptions and are willing to pay more, stick to the default on-demand instance.
+4.Choose 'Request Spot Instances' if you want to save up to 90% on instance costs. Spot instances provide computer power at a much cheaper rate but come with the risk of getting killed unexpectedly (depends on your max bid price). If you can't handle the interruptions and are willing to pay more, stick to the default on-demand instance.
 
 ## **Installing the prerequisites**
 
@@ -105,7 +105,7 @@ sudo apt-get install nvidia-modprobe
 ```
 
 ## **Installing NVIDIA Docker**
-If you've followed the instructions above, the next few should be a breeze. 
+If you've followed the instructions above, the next few should be a breeze.
 
 Install NVIDIA Docker.
 ```
@@ -187,4 +187,3 @@ Next time you run a container, you can use the id of the image you just built.
 ### Conclusion
 Once I've got everything set up, I'll usually run some code, detach from my container and tail the logs from the host.
 I hope you enjoyed my tutorial and found it useful. If you have any suggestions or questions, feel free to reach out in the comments below.
-
