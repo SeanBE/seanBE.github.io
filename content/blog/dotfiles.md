@@ -7,7 +7,21 @@ keywords:
   - "weechat"
 ---
 
-**TL;DR**: Follow instructions to install my dotfiles. 
+**TL;DR**: In this post, I'm discussing my setup and the dotfiles needed to
+reproduce it. Installation instructions can be found at
+[SeanBE/dotfiles](https://github.com/SeanBE/dotfiles). You can find me on
+Twitter using the handle [@SeanBE](https://twitter.com/seanBE).
+
+## **Setting up Gnome Terminal**
+
+
+## **Tmux and Vim**
+## **Weechat**
+
+
+
+
+Follow instructions to install my dotfiles. 
 ```
 git clone --bare https://github.com/SeanBE/dotfiles.git $HOME/.dotfiles
 # Git directory has been cloned to ~/.dotfiles .
