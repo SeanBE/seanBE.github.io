@@ -1,6 +1,7 @@
 ---
 date: "2017-03-10"
 title: "My dotfiles"
+draft: True
 keywords:
   - "dotfiles"
   - "zsh"
