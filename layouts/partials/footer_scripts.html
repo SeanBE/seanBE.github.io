@@ -1,8 +1,13 @@
 {{ if .Site.Params.highlightjs }}
   <script src="{{ .Site.BaseURL }}js/highlight.min.js" defer></script>
-  <script type="text/javascript">
-    hljs.initHighlightingOnLoad();
-  </script>
 {{ end }}
+
+<script>
+  window.onload = function() {
+    {{ if .Site.Params.highlightjs }}
+      hljs.initHighlighting();
+    {{ end }}
+  };
+</script>
 
 {{ template "_internal/google_analytics.html" . }}
