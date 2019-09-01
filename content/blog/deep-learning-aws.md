@@ -1,6 +1,7 @@
 ---
 date: "2016-07-08"
 title: "Deep Learning with AWS"
+useDisqus: true
 keywords:
   - "AWS"
   - "EC2"

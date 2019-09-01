@@ -1,29 +1,29 @@
-<!-- Original: https://github.com/fuegowolf/cocoa-eh-hugo-theme/blob/master/layouts/blog/single.html -->
-
 {{ partial "header.html" . }}
-<section class="main post non-narrow zero-top-spacing">
+
+<div class="main post non-narrow zero-top-spacing column">
     <div class="container">
         <div class="content">
             <div class="front-matter">
                 <div class="title-container">
                     {{ partial "page-heading" . }}
                 </div>
+
                 <div class="meta">
                     <div class="date">{{ .Date.Format "Jan 2, 2006" }}</div>
-                    <div class="reading-time"><div class="middot"></div>{{ .ReadingTime }} minute read</div>
+                    <div class="reading-time middot">{{ .ReadingTime }} minute read</div>
                 </div>
             </div>
             <div class="markdown">
                 {{ .Content }}
-                <br>
-                <p><a href="{{ .Section }}">Back to posts</a></p>
             </div>
-            <br>
-            <div class="disqus">
-                {{ template "_internal/disqus.html" . }}
-            </div>
+            {{ if .Params.useDisqus }}
+                    <br>
+                    <div class="disqus">
+                        {{ template "_internal/disqus.html" . }}
+                    </div>
+            {{ end }}
         </div>
     </div>
-</section>
+</div>
 
 {{ partial "footer.html" . }}
