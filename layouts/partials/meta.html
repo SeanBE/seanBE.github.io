@@ -1,11 +1,21 @@
-<!-- Original: https://github.com/fuegowolf/cocoa-eh-hugo-theme/blob/master/layouts/partials/meta.html -->
-
 <meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="HandheldFriendly" content="True">
 <meta name="MobileOptimized" content="320">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="referrer" content="no-referrer">
+
 <meta content="{{ delimit .Keywords ", " }}" name="keywords">
-{{ with .Site.Params.name }}<meta name="author" content="{{ . }}">{{ end }}
+{{ with .Site.Author.name }}<meta name="author" content="{{ . }}">{{ end }}
 {{ with .Site.Params.description }}<meta name="description" content="{{ . }}">{{ end }}
+
+<meta property="og:site_name" content="{{ .Site.Title }}" />
+<meta property="og:locale" content="{{ .Site.LanguageCode }}" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="{{ .Permalink }}" />
+<meta property="og:title" content="{{ .Title }}" />
+<meta property="og:description" content="{{ if .IsHome }}{{ .Site.Params.description }}{{ else if .IsPage }}{{ .Description }}{{ end }}">
+
+{{ if .Site.Params.twitter }}
+    <meta property="twitter:site" content="@{{.Site.Params.twitter}}">
+    <meta property="twitter:title" content="{{ if .Title }}{{ .Title }}{{ else }}{{ .Site.Title }}{{ end }}">
+    <meta property="twitter:description" content="{{ if .IsHome }}{{ .Site.Params.description }}{{ else if .IsPage }}{{ .Description }}{{ end }}">
+{{ end }}
