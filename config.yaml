@@ -1,18 +1,21 @@
-baseurl: "https://seanBE.github.io/"
-languageCode: "en"
+theme: "cocoa-eh"
 title: "Sean Löfgren"
 disqusShortname: "seanBE"
 googleAnalytics: "UA-65235616-1"
-theme: "cocoa-eh"
+baseURL: "https://seanBE.github.io/"
+disableKinds: ["taxonomy", "taxonomyTerm"]
+
+languageCode: en
+DefaultContentLanguage: en
+
+author:
+    name: "Sean Löfgren"
 
 params:
-    name: "Sean Löfgren"
-    description: "The Blog of Sean Löfgren"
-    logofile: "images/avatar.png"
-    faviconfile: "images/favicon.ico"
+    github: SeanBE
+    twitter: seanBE
+    linkedin: seanlofgren
     highlightjs: true
-
-social:
-    twitter: "https://www.twitter.com/seanBE"
-    github: "https://github.com/SeanBE"
-    linkedin: "https://www.linkedin.com/in/seanlofgren"
+    logofile: images/avatar.jpeg
+    faviconfile: images/favicon.ico
+    description: "The Blog of Sean Löfgren"
