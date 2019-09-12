@@ -7,4 +7,4 @@ MSG         := $(shell git log --format=%B -n 1 HEAD)
 build:
 	hugo
 	cd public && git add -u && git commit -m 'update build with $(MSG) ($(HASH))' && git push
-	cd .. && git add public && git commit -m 'update public submodule' && git push
+	git add public && git commit -m 'update public submodule' && git push
