@@ -16,7 +16,6 @@ params:
     twitter: seanBE
     gitlab: SeanBE
     linkedin: seanlofgren
-    highlightjs: true
-    logofile: images/avatar.jpeg
-    faviconfile: images/favicon.ico
+    logofile: /images/avatar.jpeg
+    faviconfile: /images/favicon.ico
     description: "The Blog of Sean Löfgren"
