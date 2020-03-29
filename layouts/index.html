@@ -4,7 +4,7 @@
         <div class="content">
            <div class="posts">
              <ul>
-             {{ range (where .Pages "Section" "blog").GroupByDate "Jan, 2006" "desc" }}
+             {{ range .Site.RegularPages.GroupByDate "Jan, 2006" "desc" }}
                  <li class="groupby">{{ .Key }}</li>
                  {{ range sort .Pages "Date" "desc" }}
                      {{ partial "li.html" . }}

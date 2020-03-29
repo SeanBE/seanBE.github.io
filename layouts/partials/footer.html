@@ -1,0 +1,24 @@
+<div class="footer column">
+    <div class="container">
+        <div class="icons">
+            <a href="https://gitlab.com/{{ .Site.Params.gitlab }}" rel=me target="_blank">
+                <img class="icon" src="{{ .Site.BaseURL }}img/gitlab.svg" alt="gitlab" />
+            </a>
+            <a href="https://github.com/{{ .Site.Params.github }}" rel=me target="_blank">
+                <img class="icon" src="{{ .Site.BaseURL }}img/github.svg" alt="github" />
+            </a>
+            <a href="https://twitter.com/{{ .Site.Params.twitter }}" rel=me target="_blank">
+                <img class="icon" src="{{ .Site.BaseURL }}img/twitter.svg" alt="twitter" />
+            </a>
+            <a href="https://www.linkedin.com/in/{{ .Site.Params.linkedin }}" rel=me target="_blank">
+                <img class="icon" src="{{ .Site.BaseURL }}img/linkedin.svg" alt="linkedin" />
+            </a>
+            <a href="{{ .Site.RSSLink }}">
+                <img class="icon" src="{{ .Site.BaseURL }}img/rss.svg" alt="rss" />
+            </a>
+        </div>
+    </div>
+</div>
+{{ partial "footer_scripts" . }}
+</body>
+</html>

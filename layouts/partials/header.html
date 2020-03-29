@@ -11,12 +11,11 @@
 <div class="header header-home column">
 {{ end }}
     <div class="container">
-        <a href="{{ .Site.BaseURL }}"><img class="logo" alt="logo" src="{{ .Site.Params.logofile | relURL }}" /></a>
+        <a href="{{ .Site.BaseURL }}">
+                <img class="logo" alt="logo" src="/img/avatar.jpeg" />
+        </a>
         <div class="content">
             <a href="/"><div class="name"><h1>{{ .Site.Title }}</h1></div></a>
-            <nav>
-                <ul></ul>
-            </nav>
         </div>
     </div>
 </div>
