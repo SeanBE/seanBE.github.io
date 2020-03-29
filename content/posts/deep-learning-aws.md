@@ -3,8 +3,10 @@ date: "2016-07-08"
 title: "Deep Learning with AWS"
 useDisqus: true
 description: "How to setup an Amazon EC2 instance with Nvidia-docker"
-aliases: 
-  - "/blog/deep-learning-aws"
+type: "post"
+aliases:
+  - /deep-learning-aws
+  - /blog/deep-learning-aws
 keywords:
   - "AWS"
   - "EC2"
