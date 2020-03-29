@@ -48,7 +48,7 @@ To summarize,
 1.Go to the EC2 page on the AWS Console and click on the blue Launch instance button.
 
 2.Choose the latest stable Ubuntu AMI. You can find it on the Quick Start and Community AMI panes.
-{{< figure src="/images/ubuntu.png">}}
+{{< figure src="/img/ubuntu.png">}}
 
 3.Select one of the GPU instances: g2.2xlarge (1 GPU), g2.8xlarge (4 GPUs).
 
