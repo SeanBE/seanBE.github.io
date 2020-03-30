@@ -2,7 +2,7 @@ title: "Sean Löfgren"
 disqusShortname: "seanBE"
 googleAnalytics: "UA-65235616-1"
 baseURL: "https://seanBE.github.io/"
-disableKinds: ["taxonomy", "taxonomyTerm"]
+disableKinds: ["taxonomy", "taxonomyTerm", "section"]
 
 languageCode: en
 DefaultContentLanguage: en
