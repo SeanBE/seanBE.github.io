@@ -13,7 +13,8 @@
             <a href="https://www.linkedin.com/in/{{ .Site.Params.linkedin }}" rel=me target="_blank">
                 <img class="icon" src="{{ .Site.BaseURL }}img/linkedin.svg" alt="linkedin" />
             </a>
-            <a href="{{ .Site.RSSLink }}">
+
+            <a href="{{ with .OutputFormats.Get "RSS" }}{{ .RelPermalink }}{{ end }}">
                 <img class="icon" src="{{ .Site.BaseURL }}img/rss.svg" alt="rss" />
             </a>
         </div>
