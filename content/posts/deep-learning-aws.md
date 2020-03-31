@@ -57,7 +57,7 @@ To summarize,
 ## **Installing the prerequisites**
 
 Connect to your instance. Read [Connecting to Your Linux Instance Using SSH](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html) for instructions.
-```
+```shell
 ssh -i [my_keypair.pem] ubuntu@[dns_of_ec2_instance]  
 ```
 > Connecting to an instance running Ubuntu using SSH client.
@@ -161,7 +161,7 @@ You've got a container now but no code or data. What is the point?!?!
 
 In the EC2 instance, create a directory where your code and data will reside. You can use ```s3cmd``` to move data from/to Amazon's S3.
 
-```
+```bash
 sudo apt-get install s3cmd
 ```
 
@@ -169,7 +169,7 @@ One way of moving files onto the container is using docker's ```scp``` command. 
 
 I recommend attaching a data volume to a container. Next time you run a container, use the `-v` flag.
 
-```
+```shell
 sudo nvidia-docker run -v /home/ubuntu/[HOST_DIR]:/[CONTAINER_DIR] -it kaixhin/cuda-keras
 ```
 cd to `/[CONTAINER_DIR]` and you will find everything that is in the `[HOST_DIR]`. Any changes in `[HOST_DIR]` will be directly reflected in the container (without having to run again).
@@ -184,7 +184,7 @@ Create a directory `[DOCKER_DIR]` and move the modified Dockerfile into that dir
 
 Run the following:
 
-```
+```shell
 sudo nvidia-docker build [DOCKER_DIR]
 ```
 
