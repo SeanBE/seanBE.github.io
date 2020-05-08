@@ -3,15 +3,8 @@
 <head>
 <meta charset="utf-8">
 <title>404 - Page not found</title>
-
-
 <style media="screen">
-  @font-face {
-  font-family: 'Nexa Bold';
-  src: url('https://seanBE.github.io/fonts/Nexa Bold.otf');
-}
-
-html, body, div, span, applet, object, iframe,
+  html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
 del, dfn, em, img, ins, kbd, q, s, samp,
@@ -28,8 +21,11 @@ time, mark, audio, video {
   padding: 0;
   border: 0;
   font-size: 100%;
-  font: inherit;
+  font-family: Roboto, sans-serif;
   vertical-align: baseline;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: Inter, sans-serif; 
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
@@ -91,7 +87,6 @@ body {
   width: 100%;
   min-height: 100%;
   font-weight: 400;
-  font-family: 'Helvetica Neue', 'Arial', sans-serif;
   color: #111111;
   line-height: 1.6;
   text-rendering: optimizeLegibility !important;
@@ -147,7 +142,7 @@ div.header .container {
   -webkit-justify-content: center;
   -moz-justify-content: center;
   -ms-justify-content: center;
-  justify-content: center;
+  justify-content: space-evenly;
 }
 div.header .content {
   display: -webkit-flex;
@@ -165,19 +160,14 @@ div.header .content {
   align-items: center;
 }
 div.header .container .logo {
-  
   max-width: 100px;
-  
   margin-left: -2em;
 }
 div.header .name {
   padding-top: 20px;
   font-size: 28px;
-  font-family: 'Nexa Bold', 'Helvetica Neue', 'Arial', sans-serif;
   letter-spacing: -0.005rem;
-  
   text-transform: uppercase;
-  
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   font-smoothing: antialiased;
@@ -210,7 +200,6 @@ div.header nav ul a {
   font-weight: 400;
   font-size: 14px;
   text-transform: uppercase;
-  font-family: 'Helvetica Neue', 'Arial', sans-serif;
   -webkit-transition: color 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
   -moz-transition: color 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
   -ms-transition: color 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
@@ -227,7 +216,7 @@ div.footer .container {
   -webkit-justify-content: center;
   -moz-justify-content: center;
   -ms-justify-content: center;
-  justify-content: center;
+  justify-content: flex-end;
   flex-direction: column-reverse;
   width: 100%;
   text-align: center;
@@ -289,13 +278,11 @@ div.main .content .title-container {
   justify-content: space-between;
 }
 div.main .content .posts {
-  
-  
+  margin-bottom: 4em;
 }
 div.main .content .page-heading {
   font-size: 20px;
   font-weight: 700;
-  font-family: 'Helvetica Neue', 'Arial', sans-serif;
   letter-spacing: -0.005rem;
   text-transform: uppercase;
   -moz-osx-font-smoothing: grayscale;
@@ -357,7 +344,6 @@ div.main .content .front-matter .tags ul li:hover {
 div.main .content .front-matter .tags ul li a {
   color: #666666;
 }
-
 div.main .container.f04 {
   -webkit-justify-content: center;
   -moz-justify-content: center;
@@ -382,7 +368,6 @@ div.main .container.f04 .content {
 div.main .container.f04 .content .num {
   margin: 30px 0px 30px 0;
   font-weight: 400;
-  font-family: 'Helvetica Neue', 'Arial', sans-serif;
   font-size: 50px;
 }
 div.main .container.f04 .content .detail {
@@ -463,7 +448,6 @@ div.main .content .markdown {
   font-size: 1.1em;
   line-height: 1.75em;
   color: #313537;
-  font-family: serif;
   font-weight: 300;
 }
 div.main .content .markdown h1,
@@ -473,7 +457,6 @@ div.main .content .markdown h4,
 div.main .content .markdown h5,
 div.main .content .markdown h6 {
   font-size: 22px;
-  font-family: 'Helvetica Neue', 'Arial', sans-serif;
   letter-spacing: -0.005rem;
   font-weight: 700;
   -moz-osx-font-smoothing: grayscale;
@@ -504,7 +487,6 @@ div.main .content .markdown h6 {
 }
 div.main .content .markdown code,
 div.main .content .markdown pre {
-  font-family: 'Menlo', monospace;
   font-size: 0.98rem;
   background-color: #f7f7f7;
 }
@@ -536,9 +518,7 @@ div.main .content .markdown a code:hover {
   text-decoration: underline;
 }
 div.main .content .markdown p {
-  
   text-align: justify;
-  
   margin-top: 0;
   margin-bottom: 1em;
 }
@@ -706,7 +686,6 @@ kbd {
   padding: 0.1em 0.6em;
   border: 1px solid #ccc;
   font-size: 11px;
-  font-family: Arial,Helvetica,sans-serif;
   background-color: #f7f7f7;
   color: #333;
   -moz-box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2),0 0 0 2px #ffffff inset;
@@ -721,32 +700,6 @@ kbd {
   line-height: 1.4;
   white-space: nowrap;
 }
-
-/* Fonts */
-
-
-.wf-raleway-n4-active body, 
-.wf-raleway-n4-active div.header nav ul a,
-.wf-raleway-n7-active div.main .content .page-heading,
-.wf-raleway-n2-active div.main .container.f04 .content .num,
-.wf-raleway-n7-active div.main .content .markdown h1,
-.wf-raleway-n7-active div.main .content .markdown h2,
-.wf-raleway-n7-active div.main .content .markdown h3,
-.wf-raleway-n7-active div.main .content .markdown h4,
-.wf-raleway-n7-active div.main .content .markdown h5,
-.wf-raleway-n7-active div.main .content .markdown h6 {
-      font-family: 'Raleway';
-}
-
-.wf-merriweather-n3-active div.main .content .markdown {
-      font-family: 'Merriweather';
-}
-
-.wf-ubuntu-mono-n4-active div.main .content .markdown code,
-.wf-ubuntu-mono-n4-active div.main .content .markdown pre {
-      font-family: 'Ubuntu Mono';
-}
-
 
 </style>
 <style media="(min-width: 600px)">
@@ -763,15 +716,11 @@ section {
 padding: 0 16px;
 margin-left: 100px;
 margin-right: 100px;
-
 max-width: 750px;
-
 }
 div.column {
 padding: 0 16px;
-
 max-width: 750px;
-
 }
 div.header {
 background-color: transparent;
@@ -797,6 +746,7 @@ div.header-home nav ul a {
 font-size: 18px;
 }
 div.header .content {
+margin-left: 0.5em;
 -webkit-align-items: flex-start;
 -moz-align-items: flex-start;
 -ms-align-items: flex-start;
@@ -879,9 +829,7 @@ div.main {
 padding-top: 0;
 }
 div.main .content {
-  
   font-size: 16px;
-  
 }
 div.main .container .content .post-item {
 display: flex;
@@ -923,35 +871,16 @@ margin-left: -4%;
 
 </style>
 
-<noscript>
-  <link href="https://fonts.googleapis.com/css?family=Raleway:400,600,700" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Merriweather:300,300i,700,700i" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700" rel="stylesheet">
-</noscript>
+<style type="text/css" media="screen">
+  .hljs{display:block;background:white;padding:0.5em;color:#333333;overflow-x:auto}.hljs-comment,.hljs-meta{color:#969896}.hljs-string,.hljs-variable,.hljs-template-variable,.hljs-strong,.hljs-emphasis,.hljs-quote{color:#df5000}.hljs-keyword,.hljs-selector-tag,.hljs-type{color:#a71d5d}.hljs-literal,.hljs-symbol,.hljs-bullet,.hljs-attribute{color:#0086b3}.hljs-section,.hljs-name{color:#63a35c}.hljs-tag{color:#333333}.hljs-title,.hljs-attr,.hljs-selector-id,.hljs-selector-class,.hljs-selector-attr,.hljs-selector-pseudo{color:#795da3}.hljs-addition{color:#55a532;background-color:#eaffea}.hljs-deletion{color:#bd2c00;background-color:#ffecec}.hljs-link{text-decoration:underline}
+</style>
 
+<link rel="shortcut icon" href=/img/favicon.ico >
+<link href="" 
+      rel="alternate" type="application/rss+xml" title="Sean Löfgren" />
 
-  <style type="text/css" media="screen">
-    .hljs{display:block;background:white;padding:0.5em;color:#333333;overflow-x:auto}.hljs-comment,.hljs-meta{color:#969896}.hljs-string,.hljs-variable,.hljs-template-variable,.hljs-strong,.hljs-emphasis,.hljs-quote{color:#df5000}.hljs-keyword,.hljs-selector-tag,.hljs-type{color:#a71d5d}.hljs-literal,.hljs-symbol,.hljs-bullet,.hljs-attribute{color:#0086b3}.hljs-section,.hljs-name{color:#63a35c}.hljs-tag{color:#333333}.hljs-title,.hljs-attr,.hljs-selector-id,.hljs-selector-class,.hljs-selector-attr,.hljs-selector-pseudo{color:#795da3}.hljs-addition{color:#55a532;background-color:#eaffea}.hljs-deletion{color:#bd2c00;background-color:#ffecec}.hljs-link{text-decoration:underline}
-  </style>
-
-
-
-
-
-
-
-
-
-
-
-<link rel="shortcut icon"
-
-    href="/images/favicon.ico"
-
->
-
-
-
+<link href="https://fonts.googleapis.com/css?family=Inter:300,400,600,700" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,600,700" rel="stylesheet">
 
 <style>
     .logo {
@@ -972,7 +901,7 @@ margin-left: -4%;
 </style>
 </head>
 <body>
-    <img src=images/avatar.jpeg class="logo" alt="logo" />
+    <img src=/img/avatar.jpeg class="logo" alt="logo" />
     <div class="container f04">
         <div class="content">
             <div class="header column">
