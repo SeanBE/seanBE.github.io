@@ -12,7 +12,7 @@
 {{ end }}
     <div class="container">
         <a href="{{ .Site.BaseURL }}">
-                <img class="logo" alt="logo" src="/img/avatar.jpeg" />
+                <img class="logo" alt="logo" src={{ .Site.Params.logofile }} />
         </a>
         <div class="content">
             <a href="/"><div class="name"><h1>{{ .Site.Title }}</h1></div></a>
