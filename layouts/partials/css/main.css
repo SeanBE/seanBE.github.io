@@ -15,8 +15,11 @@ time, mark, audio, video {
   padding: 0;
   border: 0;
   font-size: 100%;
-  font: inherit;
+  font-family: Roboto, sans-serif;
   vertical-align: baseline;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: Inter, sans-serif; 
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
@@ -78,7 +81,6 @@ body {
   width: 100%;
   min-height: 100%;
   font-weight: 400;
-  font-family: 'Helvetica Neue', 'Arial', sans-serif;
   color: #111111;
   line-height: 1.6;
   text-rendering: optimizeLegibility !important;
@@ -134,7 +136,7 @@ div.header .container {
   -webkit-justify-content: center;
   -moz-justify-content: center;
   -ms-justify-content: center;
-  justify-content: center;
+  justify-content: space-evenly;
 }
 div.header .content {
   display: -webkit-flex;
@@ -152,27 +154,14 @@ div.header .content {
   align-items: center;
 }
 div.header .container .logo {
-  {{ if .Site.Params.enlarged }}
-  max-width: 200px;
-  {{ else }}
   max-width: 100px;
-  {{ end }}
   margin-left: -2em;
 }
 div.header .name {
   padding-top: 20px;
   font-size: 28px;
-  font-family: 'Helvetica Neue', 'Arial', sans-serif;
   letter-spacing: -0.005rem;
-  {{ if isset .Site.Params "titlestyle" }}
-      {{ if in "capitalize uppercase lowercase none full-width" .Site.Params.titlestyle }}
-  text-transform: {{ .Site.Params.titlestyle }};
-      {{ else }}
-      {{ errorf "This titlestyle is not a valid text-transform css parameter: %s" .Site.Params.titlestyle }}
-      {{ end }}
-  {{ else }}
   text-transform: uppercase;
-  {{ end }}
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   font-smoothing: antialiased;
@@ -205,7 +194,6 @@ div.header nav ul a {
   font-weight: 400;
   font-size: 14px;
   text-transform: uppercase;
-  font-family: 'Helvetica Neue', 'Arial', sans-serif;
   -webkit-transition: color 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
   -moz-transition: color 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
   -ms-transition: color 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
@@ -222,7 +210,7 @@ div.footer .container {
   -webkit-justify-content: center;
   -moz-justify-content: center;
   -ms-justify-content: center;
-  justify-content: center;
+  justify-content: flex-end;
   flex-direction: column-reverse;
   width: 100%;
   text-align: center;
@@ -284,15 +272,11 @@ div.main .content .title-container {
   justify-content: space-between;
 }
 div.main .content .posts {
-  {{ $nbPosts := len (where .Data.Pages "Params.best" true)  }}
-  {{ if gt $nbPosts 0 }}
   margin-bottom: 4em;
-  {{ end }}
 }
 div.main .content .page-heading {
   font-size: 20px;
   font-weight: 700;
-  font-family: 'Helvetica Neue', 'Arial', sans-serif;
   letter-spacing: -0.005rem;
   text-transform: uppercase;
   -moz-osx-font-smoothing: grayscale;
@@ -354,26 +338,6 @@ div.main .content .front-matter .tags ul li:hover {
 div.main .content .front-matter .tags ul li a {
   color: #666666;
 }
-{{ if .Site.Params.tagicons }}
-div.main .content .front-matter .tags.tag-icons .middot {
-  margin-left: 8px;
-}
-div.main .content .front-matter .tags.tag-icons .middot a {
-  display: inline-block;
-  padding: 0 5px;
-  background: #eee;
-  border-radius: 0 5px 5px 0;
-  position: relative;
-}
-div.main .content .front-matter .tags.tag-icons .middot a:after {
-  content: " ";
-  position: absolute;
-  right: 100%;
-  border-top: 11.2px solid transparent;
-  border-right: 11.2px solid #eee;
-  border-bottom: 11.2px solid transparent;
-}
-{{ end }}
 div.main .container.f04 {
   -webkit-justify-content: center;
   -moz-justify-content: center;
@@ -398,7 +362,6 @@ div.main .container.f04 .content {
 div.main .container.f04 .content .num {
   margin: 30px 0px 30px 0;
   font-weight: 400;
-  font-family: 'Helvetica Neue', 'Arial', sans-serif;
   font-size: 50px;
 }
 div.main .container.f04 .content .detail {
@@ -479,7 +442,6 @@ div.main .content .markdown {
   font-size: 1.1em;
   line-height: 1.75em;
   color: #313537;
-  font-family: serif;
   font-weight: 300;
 }
 div.main .content .markdown h1,
@@ -489,7 +451,6 @@ div.main .content .markdown h4,
 div.main .content .markdown h5,
 div.main .content .markdown h6 {
   font-size: 22px;
-  font-family: 'Helvetica Neue', 'Arial', sans-serif;
   letter-spacing: -0.005rem;
   font-weight: 700;
   -moz-osx-font-smoothing: grayscale;
@@ -520,7 +481,6 @@ div.main .content .markdown h6 {
 }
 div.main .content .markdown code,
 div.main .content .markdown pre {
-  font-family: 'Menlo', monospace;
   font-size: 0.98rem;
   background-color: #f7f7f7;
 }
@@ -552,11 +512,7 @@ div.main .content .markdown a code:hover {
   text-decoration: underline;
 }
 div.main .content .markdown p {
-  {{if .Site.Params.align_left}}
-  text-align: left;
-  {{else}}
   text-align: justify;
-  {{end}}
   margin-top: 0;
   margin-bottom: 1em;
 }
@@ -724,7 +680,6 @@ kbd {
   padding: 0.1em 0.6em;
   border: 1px solid #ccc;
   font-size: 11px;
-  font-family: Arial,Helvetica,sans-serif;
   background-color: #f7f7f7;
   color: #333;
   -moz-box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2),0 0 0 2px #ffffff inset;
