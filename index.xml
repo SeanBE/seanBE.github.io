@@ -1,27 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Sean Löfgren</title>
-    <link>https://slofgren.com/</link>
-    <description>Recent content on Sean Löfgren</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
-    <lastBuildDate>Fri, 08 Jul 2016 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://slofgren.com/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>Deep Learning with AWS</title>
-      <link>https://slofgren.com/posts/deep-learning-aws/</link>
-      <pubDate>Fri, 08 Jul 2016 00:00:00 +0000</pubDate>
-      
-      <guid>https://slofgren.com/posts/deep-learning-aws/</guid>
-      <description>Update: I recommend reading Nvidia&amp;rsquo; GPU Server Application Deployment Made Easy for an alternative approach (Ansible) to setting up the NVDIA-Docker plugin.
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Sean Löfgren</title><link>https://slofgren.com/</link><description>Recent content on Sean Löfgren</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 08 Jul 2016 00:00:00 +0000</lastBuildDate><atom:link href="https://slofgren.com/index.xml" rel="self" type="application/rss+xml"/><item><title>Deep Learning with AWS</title><link>https://slofgren.com/posts/deep-learning-aws/</link><pubDate>Fri, 08 Jul 2016 00:00:00 +0000</pubDate><guid>https://slofgren.com/posts/deep-learning-aws/</guid><description>Update: I recommend reading Nvidia&amp;rsquo; GPU Server Application Deployment Made Easy for an alternative approach (Ansible) to setting up the NVDIA-Docker plugin.
 There are many tutorials on how to leverage Amazon&amp;rsquo;s supreme computing power to perform deep learning tasks. I would like to take this opportunity to contribute to that collection.
 I started working with Amazon&amp;rsquo;s EC2 instances for deep learning by reading some of these tutorials, including predominantly:
- Installing CUDA, OpenCL, and PyOpenCL on AWS EC2 Deep Learning Tutorial for Kaggle&amp;rsquo;s Facial Keypoints Detection Installing TensorFlow on AWS  I would launch an instance, install the necessary dependencies and create an AMI.</description>
-    </item>
-    
-  </channel>
-</rss>
+Installing CUDA, OpenCL, and PyOpenCL on AWS EC2 Deep Learning Tutorial for Kaggle&amp;rsquo;s Facial Keypoints Detection Installing TensorFlow on AWS I would launch an instance, install the necessary dependencies and create an AMI.</description></item></channel></rss>
