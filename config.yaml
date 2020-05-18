@@ -15,6 +15,5 @@ params:
     twitter: seanBE
     gitlab: SeanBE
     linkedin: seanlofgren
-    logofile: /img/avatar.jpeg
     faviconfile: /img/favicon.ico
     description: "The Blog of Sean Löfgren"
