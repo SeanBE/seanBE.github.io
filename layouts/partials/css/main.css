@@ -423,14 +423,14 @@ div.main .container .content .post-item {
     list-style: none;
 }
 a {
-  color: #428bca;
+  color: #316fa4;
   -webkit-transition: color 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
   -moz-transition: color 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
   -ms-transition: color 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
   -o-transition: color 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
 }
 a:hover {
-  color: #2a6496;
+  color: #103c62;
 }
 img {
   max-width: 100%;
