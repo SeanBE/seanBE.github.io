@@ -1,21 +1,28 @@
-name: github pages
+name: Deploy Hugo site to GitHub Pages
 on:
   push:
-    branches: [ source ]
+    branches: [source]
 jobs:
   deploy:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
 
-
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
         with:
-          hugo-version: '0.111.3'
+          hugo-version: "0.111.3"
 
-      - name: Build
-        run: hugo --minify
+      - name: Cache Hugo modules
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/hugo_modules
+          key: ${{ runner.os }}-hugo-${{ hashFiles('**/go.sum') }}
+          restore-keys: |
+            ${{ runner.os }}-hugo-
+
+      - name: Build assets
+        run: hugo --minify --environment production
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
@@ -25,4 +32,4 @@ jobs:
           publish_dir: ./public
           keep_files: true
           cname: slofgren.com
-          publish_branch: master
+          publish_branch: build
