@@ -24,7 +24,7 @@ jobs:
       - name: Build assets
         run: hugo --minify --environment production
 
-      - name: Deploy
+      - name: Push to build branch
         uses: peaceiris/actions-gh-pages@v3
         if: ${{ github.ref == 'refs/heads/source' }}
         with:
