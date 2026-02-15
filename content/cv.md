@@ -2,7 +2,7 @@
 title: "CV"
 layout: "cv"
 url: "/cv/"
-summary: "Sean Löfgren - Software Engineer"
+summary: "Sean Löfgren - VP Engineering"
 ---
 
 <!-- CV content is rendered by the custom cv.html layout -->
