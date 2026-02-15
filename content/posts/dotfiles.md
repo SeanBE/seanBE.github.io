@@ -2,7 +2,6 @@
 date: "2017-03-10"
 title: "My dotfiles"
 draft: True
-type: "post"
 keywords:
   - "dotfiles"
   - "zsh"

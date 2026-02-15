@@ -1,8 +1,10 @@
 baseURL: "https://slofgren.com/"
 theme: "PaperMod"
-title: "[Placeholder]"
+title: "Sean Löfgren"
 languageCode: en
 DefaultContentLanguage: en
+pagination:
+  pagerSize: 3
 
 # Enable taxonomies for tags
 taxonomies:
@@ -32,27 +34,26 @@ outputs:
 # Menu navigation
 menu:
   main:
-    - identifier: posts
-      name: Posts
-      url: /posts/
+    - identifier: archive
+      name: Archive
+      url: /archives/
       weight: 10
-    - identifier: til
-      name: TIL
-      url: /til/
-      weight: 20
     - identifier: cv
       name: CV
       url: /cv/
-      weight: 30
+      weight: 20
     - identifier: search
       name: Search
       url: /search/
-      weight: 40
+      weight: 30
 
 params:
-  # Site description
-  description: "Engineering blog of Sean Löfgren"
+  description: "Blog of Sean Löfgren"
   author: "Sean Löfgren"
+
+  # Include both posts and TIL in main sections
+  mainSections: ["posts", "til"]
+  hideAuthor: true
 
   # Favicon
   favicon: /img/favicon.ico
@@ -60,20 +61,9 @@ params:
   # Profile mode for homepage
   profileMode:
     enabled: true
-    title: "Sean Löfgren"
-    subtitle: "VP Engineering"
     imageUrl: "/img/ava.webp"
     imageWidth: 150
     imageHeight: 150
-    buttons:
-      - name: Posts
-        url: /posts/
-      - name: TIL
-        url: /til/
-      - name: CV
-        url: /cv/
-
-  # Social icons
   socialIcons:
     - name: github
       url: "https://github.com/SeanBE"

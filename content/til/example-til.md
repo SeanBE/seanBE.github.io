@@ -2,7 +2,7 @@
 title: "Example TIL - Git Rebase Onto"
 date: 2026-02-08
 tags: ["git"]
-draft: true
+draft: True
 ---
 
 **TL;DR**: Use `git rebase --onto` to move a branch to a new base.
