@@ -1,19 +1,119 @@
-title: "Sean Löfgren"
-disqusShortname: "seanBE"
-googleAnalytics: "G-1B2Z059XVS"
 baseURL: "https://slofgren.com/"
-disableKinds: ["taxonomy", "taxonomyTerm", "section"]
-
+title: "Sean Löfgren"
+theme: "PaperMod"
 languageCode: en
 DefaultContentLanguage: en
 
-author:
-    name: "Sean Löfgren"
+# Enable taxonomies for tags
+taxonomies:
+  tag: tags
+
+# Build settings
+enableRobotsTXT: true
+buildDrafts: false
+buildFuture: false
+buildExpired: false
+
+# Syntax highlighting with Chroma (server-side, no JS needed)
+markup:
+  highlight:
+    codeFences: true
+    guessSyntax: true
+    lineNos: false
+    style: dracula
+
+# Output formats
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON  # For search
+
+# Menu navigation
+menu:
+  main:
+    - identifier: posts
+      name: Posts
+      url: /posts/
+      weight: 10
+    - identifier: til
+      name: TIL
+      url: /til/
+      weight: 20
+    - identifier: cv
+      name: CV
+      url: /cv/
+      weight: 30
+    - identifier: search
+      name: Search
+      url: /search/
+      weight: 40
 
 params:
-    github: SeanBE
-    twitter: seanBE
-    gitlab: SeanBE
-    linkedin: seanlofgren
-    faviconfile: /img/favicon.ico
-    description: "The Blog of Sean Löfgren"
+  # Site description
+  description: "Engineering blog of Sean Löfgren"
+  author: "Sean Löfgren"
+
+  # Favicon
+  favicon: /img/favicon.ico
+
+  # Profile mode for homepage
+  profileMode:
+    enabled: true
+    title: "Sean Löfgren"
+    subtitle: "VP Engineering"
+    imageUrl: "/img/ava.webp"
+    imageWidth: 150
+    imageHeight: 150
+    buttons:
+      - name: Posts
+        url: /posts/
+      - name: TIL
+        url: /til/
+      - name: CV
+        url: /cv/
+
+  # Social icons
+  socialIcons:
+    - name: github
+      url: "https://github.com/SeanBE"
+    - name: linkedin
+      url: "https://linkedin.com/in/seanlofgren"
+    - name: rss
+      url: "/index.xml"
+
+  # Theme settings
+  defaultTheme: auto  # auto switches based on system preference
+  disableThemeToggle: false
+
+  # Show reading time
+  ShowReadingTime: true
+  ShowShareButtons: false
+  ShowPostNavLinks: true
+  ShowBreadCrumbs: true
+  ShowCodeCopyButtons: true
+  ShowWordCount: false
+  ShowRssButtonInSectionTermList: true
+
+  # Table of contents
+  ShowToc: true
+  TocOpen: false
+
+  # Search
+  fuseOpts:
+    isCaseSensitive: false
+    shouldSort: true
+    location: 0
+    distance: 1000
+    threshold: 0.4
+    minMatchCharLength: 0
+    keys: ["title", "permalink", "summary", "content"]
+
+  # Cover image defaults
+  cover:
+    hidden: false
+    hiddenInList: false
+    hiddenInSingle: false
+
+# Analytics
+googleAnalytics: "G-1B2Z059XVS"
