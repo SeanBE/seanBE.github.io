@@ -1,0 +1,323 @@
+{{- define "main" }}
+<style>
+  /* Match PaperMod list page background */
+  body {
+    background: var(--code-bg);
+  }
+  [data-theme="dark"] body {
+    background: var(--theme);
+  }
+
+  /* Jarocki-inspired CV styles, using PaperMod CSS variables */
+  .cv-container {
+    max-width: 680px;
+    margin: 0 auto;
+    font-size: 14px;
+  }
+
+  .cv-about p {
+    color: var(--secondary);
+    font-size: 0.875rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .cv-links {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .cv-links a {
+    color: var(--secondary);
+    text-decoration: none;
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .cv-links a:hover {
+    color: var(--primary);
+    border-color: var(--primary);
+  }
+
+  /* Sections */
+  .cv-section {
+    margin-bottom: 1.5rem;
+  }
+
+  .cv-section h2 {
+    font-size: 0.875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.75rem;
+    color: var(--primary);
+  }
+
+  /* Experience */
+  .cv-experience-item {
+    margin-bottom: 1rem;
+  }
+
+  .cv-experience-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .cv-experience-header h3 {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--primary);
+  }
+
+  .cv-experience-header h3 a {
+    color: var(--primary);
+    text-decoration: none;
+  }
+
+  .cv-experience-header h3 a:hover {
+    text-decoration: underline;
+  }
+
+  .cv-experience-date {
+    font-size: 0.75rem;
+    color: var(--secondary);
+  }
+
+  .cv-experience-role {
+    font-size: 0.8125rem;
+    color: var(--secondary);
+    margin-bottom: 0.25rem;
+  }
+
+  /* Grouped roles at one company */
+  .cv-role-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .cv-role-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 0.5rem;
+  }
+
+  .cv-role-list li + li {
+    margin-top: 0.25rem;
+  }
+
+  .cv-role-list .cv-experience-role {
+    font-weight: 500;
+    margin-bottom: 0;
+  }
+
+  .cv-experience-desc {
+    font-size: 0.8125rem;
+    color: var(--secondary);
+    margin-bottom: 0.5rem;
+  }
+
+  /* Badges */
+  .cv-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+  }
+
+  .cv-badge {
+    font-size: 0.6875rem;
+    background: var(--code-bg);
+    color: var(--secondary);
+    padding: 0.125rem 0.5rem;
+    border-radius: 9999px;
+  }
+
+  /* Projects */
+  .cv-projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0.75rem;
+  }
+
+  .cv-project-card {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.75rem;
+  }
+
+  .cv-project-card h3 {
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    color: var(--primary);
+  }
+
+  .cv-project-card h3 a {
+    color: var(--primary);
+    text-decoration: none;
+  }
+
+  .cv-project-card h3 a:hover {
+    text-decoration: underline;
+  }
+
+  .cv-project-card p {
+    font-size: 0.75rem;
+    color: var(--secondary);
+    margin-bottom: 0.5rem;
+  }
+
+  /* Education */
+  .cv-education-item {
+    margin-bottom: 0.5rem;
+  }
+
+  .cv-education-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 0.5rem;
+  }
+
+  .cv-education-header h3 {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--primary);
+  }
+
+  .cv-education-degree {
+    font-size: 0.8125rem;
+    color: var(--secondary);
+  }
+
+  /* Print styles */
+  @media print {
+    .header, .footer, .top-link {
+      display: none !important;
+    }
+
+    body {
+      background: white !important;
+    }
+
+    .cv-container {
+      max-width: 100%;
+    }
+
+    .cv-badge {
+      border: 1px solid #ccc;
+      background: white;
+      color: #333;
+    }
+  }
+
+  /* Mobile */
+  @media (max-width: 480px) {
+    .cv-links {
+      justify-content: center;
+    }
+
+    .cv-experience-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>
+
+<div class="cv-container">
+  <section class="cv-section cv-about">
+    <p>
+      Builder at heart. I love turning complex data and ML problems into simple, useful products. Now leading engineering at 9fin, where I focus on building scalable systems, empowering teams, and shipping things that make a real impact.
+    </p>
+    <div class="cv-links">
+      <a href="https://github.com/SeanBE">GitHub</a>
+      <a href="https://linkedin.com/in/seanlofgren">LinkedIn</a>
+    </div>
+  </section>
+
+  <section class="cv-section">
+    <h2>Work Experience</h2>
+
+    <div class="cv-experience-item">
+      <div class="cv-experience-header">
+        <h3><a href="#">9fin</a></h3>
+        <span class="cv-experience-date">2017 — Present</span>
+      </div>
+      <ul class="cv-role-list">
+        <li><p class="cv-experience-role">VP of Engineering</p><span class="cv-experience-date">2025 — Present</span></li>
+        <li><p class="cv-experience-role">Head of Data &amp; AI</p><span class="cv-experience-date">2024 — 2025</span></li>
+        <li><p class="cv-experience-role">Head of Data Science</p><span class="cv-experience-date">2023 — 2024</span></li>
+        <li><p class="cv-experience-role">Lead Software Engineer</p><span class="cv-experience-date">2020 — 2023</span></li>
+        <li><p class="cv-experience-role">Senior Software Engineer</p><span class="cv-experience-date">2017 — 2020</span></li>
+      </ul>
+    </div>
+
+    <div class="cv-experience-item">
+      <div class="cv-experience-header">
+        <h3><a href="#">M&G</a></h3>
+        <span class="cv-experience-date">2012 — 2015</span>
+      </div>
+      <ul class="cv-role-list">
+        <li><p class="cv-experience-role">Software Engineer</p><span class="cv-experience-date">2012-2015</span></li>
+      </ul>
+    </div>
+
+  </section>
+
+  <!--<section class="cv-section">
+    <h2>Skills</h2>
+    <div class="cv-badges">
+      <span class="cv-badge">Go</span>
+      <span class="cv-badge">Python</span>
+      <span class="cv-badge">TypeScript</span>
+      <span class="cv-badge">Kubernetes</span>
+      <span class="cv-badge">Docker</span>
+      <span class="cv-badge">AWS</span>
+      <span class="cv-badge">GCP</span>
+      <span class="cv-badge">PostgreSQL</span>
+      <span class="cv-badge">Redis</span>
+      <span class="cv-badge">Terraform</span>
+    </div>
+  </section>-->
+
+  <!--<section class="cv-section">
+    <h2>Projects</h2>
+    <div class="cv-projects-grid">
+      <div class="cv-project-card">
+        <h3><a href="https://github.com/SeanBE/project">Project Name</a></h3>
+        <p>Brief description of the project and what it does.</p>
+        <div class="cv-badges">
+          <span class="cv-badge">Go</span>
+          <span class="cv-badge">React</span>
+        </div>
+      </div>
+    </div>
+  </section>-->
+
+  <section class="cv-section">
+    <h2>Education</h2>
+    <div class="cv-education-item">
+      <div class="cv-education-header">
+        <h3>Imperial College London</h3>
+        <span class="cv-experience-date">2015 — 2016</span>
+      </div>
+      <p class="cv-education-degree">Master of Science (MSc), Machine Learning</p>
+    </div>
+    <div class="cv-education-item">
+      <div class="cv-education-header">
+        <h3>Royal Holloway, University of London</h3>
+        <span class="cv-experience-date">2010 — 2013</span>
+      </div>
+      <p class="cv-education-degree">Bachelor of Science (BSc), Computer Science</p>
+    </div>
+  </section>
+</div>
+{{- end }}

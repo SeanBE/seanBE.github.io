@@ -1,0 +1,96 @@
+/* Hide nav title on homepage only — profile card shows the name there */
+body:has(.home-columns) .header .logo > a {
+    display: none;
+}
+
+/* Widen the main container on homepage to use the full nav width */
+.main:has(.home-columns) {
+    max-width: calc(var(--nav-width) + var(--gap) * 2);
+}
+
+.home-columns {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+}
+
+.home-profile-column {
+    flex: 0 0 280px;
+    position: sticky;
+    top: var(--header-height, 80px);
+}
+
+/* Override theme's full-viewport profile height */
+.home-profile-column .profile {
+    min-height: auto;
+}
+
+.home-posts-column {
+    flex: 1;
+    min-width: 0;
+}
+
+/* Archive tags */
+.archive-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+}
+
+.archive-tag {
+    font-size: 0.875rem;
+    color: var(--secondary);
+    text-decoration: none;
+    padding: 0.25rem 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 9999px;
+    transition: color 0.2s, border-color 0.2s;
+}
+
+.archive-tag:hover {
+    color: var(--primary);
+    border-color: var(--primary);
+}
+
+.archive-tag sup {
+    font-size: 0.6875rem;
+    margin-left: 0.125rem;
+}
+
+.archive-entry-tag {
+    font-size: 0.8125rem;
+    color: var(--secondary);
+    text-decoration: none;
+}
+
+.archive-entry-tag:hover {
+    color: var(--primary);
+}
+
+/* On narrow screens, stack vertically */
+@media (max-width: 768px) {
+    .home-columns {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .home-profile-column {
+        flex: none;
+        width: 100%;
+        position: static;
+    }
+
+    .home-profile-column .profile {
+        min-height: auto;
+        padding: 1rem 0;
+    }
+
+    .home-profile-column .profile_inner h1 {
+        font-size: 1.5rem;
+    }
+
+    .home-posts-column {
+        width: 100%;
+    }
+}
