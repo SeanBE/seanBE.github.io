@@ -57,8 +57,8 @@ To summarize,
 ## **Installing the prerequisites**
 
 Connect to your instance. Read [Connecting to Your Linux Instance Using SSH](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html) for instructions.
-```
-ssh -i [my_keypair.pem] ubuntu@[dns_of_ec2_instance]  
+```bash
+ssh -i [my_keypair.pem] ubuntu@[dns_of_ec2_instance]
 ```
 > Connecting to an instance running Ubuntu using SSH client.
 
@@ -67,7 +67,7 @@ Once you've made your way into the instance, it's time to start installing every
 In order to use NVIDIA Docker, we need to fulfill [Nvidia-docker prerequisites](https://github.com/NVIDIA/nvidia-docker/wiki/Installation#prerequisites).
 
 Update all the default packages on the instance.
-```
+```bash
 sudo apt-get update && sudo apt-get upgrade
 ```
 
@@ -77,7 +77,7 @@ The tutorial consists of updating your apt sources, installing the ```linux-imag
 
 To summarize,
 
-```
+```bash
 sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
 ```
 
@@ -85,7 +85,7 @@ Create file ```/etc/apt/sources.list.d/docker.list```.
 
 Add line ```deb https://apt.dockerproject.org/repo ubuntu-trusty main```
 
-```
+```bash
 sudo apt-get update
 apt-cache policy docker-engine
 sudo apt-get install linux-image-extra-$(uname -r)
@@ -93,20 +93,20 @@ sudo apt-get install docker-engine
 ```
 
 If you've followed all of those instructions, you can test it out using the following:
-```
+```bash
 sudo docker run hello-world
 ```
 
 Install the necessary graphics drivers. Read more [here](http://www.howtogeek.com/242045/how-to-get-the-latest-nvidia-amd-or-intel-graphics-drivers-on-ubuntu/).
 According to the PPA page, ```nvidia-361``` is the recommended version.
-```
+```bash
 sudo add-apt-repository ppa:graphics-drivers/ppa
 sudo apt-get update
 sudo apt-get install nvidia-361
 ```
 
 Install ```nvidia-modprobe```. It loads the NVIDIA kernel module and creates NVIDIA character device files.
-```
+```bash
 sudo apt-get install nvidia-modprobe
 ```
 
@@ -114,13 +114,13 @@ sudo apt-get install nvidia-modprobe
 If you've followed the instructions above, the next few should be a breeze.
 
 Install NVIDIA Docker.
-```
+```bash
 wget -P /tmp https://github.com/NVIDIA/nvidia-docker/releases/download/v1.0.0-rc.3/nvidia-docker_1.0.0.rc.3-1_amd64.deb
 
 sudo dpkg -i /tmp/nvidia-docker*.deb && rm /tmp/nvidia-docker*.deb
 ```
 The following instruction can be used to test everything so far. I've also included what should be roughly returned from the command.
-```
+```text
 sudo nvidia-docker run --rm nvidia/cuda nvidia-smi
 
 +-----------------------------------------------------------------------------+
@@ -144,12 +144,12 @@ I highly recommend creating an AMI at this point in time. You will avoid having 
 Read [Creating an AMI EBS](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami-ebs.html).
 
 Select a Docker image from [Kaixhin's repository](https://hub.docker.com/u/kaixhin/). Let's pick `kaixhin/cuda-keras` and download it.
-```
+```bash
 sudo nvidia-docker pull kaixhin/cuda-keras
 ```
 
 Create a container with the image.
-```
+```bash
 sudo nvidia-docker run -it kaixhin/cuda-keras
 ```
 
@@ -161,7 +161,7 @@ You've got a container now but no code or data. What is the point?!?!
 
 In the EC2 instance, create a directory where your code and data will reside. You can use ```s3cmd``` to move data from/to Amazon's S3.
 
-```
+```bash
 sudo apt-get install s3cmd
 ```
 
@@ -169,7 +169,7 @@ One way of moving files onto the container is using docker's ```scp``` command. 
 
 I recommend attaching a data volume to a container. Next time you run a container, use the `-v` flag.
 
-```
+```bash
 sudo nvidia-docker run -v /home/ubuntu/[HOST_DIR]:/[CONTAINER_DIR] -it kaixhin/cuda-keras
 ```
 cd to `/[CONTAINER_DIR]` and you will find everything that is in the `[HOST_DIR]`. Any changes in `[HOST_DIR]` will be directly reflected in the container (without having to run again).
@@ -184,7 +184,7 @@ Create a directory `[DOCKER_DIR]` and move the modified Dockerfile into that dir
 
 Run the following:
 
-```
+```bash
 sudo nvidia-docker build [DOCKER_DIR]
 ```
 

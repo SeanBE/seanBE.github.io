@@ -23,7 +23,7 @@ Twitter using the handle [@SeanBE](https://twitter.com/seanBE).
 
 
 Follow instructions to install my dotfiles. 
-```
+```bash
 git clone --bare https://github.com/SeanBE/dotfiles.git $HOME/.dotfiles
 # Git directory has been cloned to ~/.dotfiles .
 # You might have existing files that conflict with my dotfiles.

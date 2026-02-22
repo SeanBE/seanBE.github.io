@@ -18,6 +18,10 @@ buildExpired: false
 
 # Syntax highlighting with Chroma (server-side, no JS needed)
 markup:
+  goldmark:
+    extensions:
+      goat:
+        enable: false
   highlight:
     codeFences: true
     guessSyntax: true
